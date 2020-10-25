@@ -1,5 +1,5 @@
 ---
-title: "Homework 2: Group 1"
+title: "Project of group 1"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 author: "Gaëtan Lovey, Raffaello Raffin, Jérémy Bayer, Cédric Vuignier" 
 output:
@@ -9,8 +9,6 @@ output:
     toc_depth: 4
 
 ---
-
-
 ```{r message=FALSE, warning=FALSE, include=FALSE}
 library(here)
 library(kableExtra)
@@ -18,27 +16,30 @@ library(tidyverse)
 library(ggplot2)
 ```
 
-#Goals of the project
-```{r}
+# Goal of the project
 
+The main target is to build a shiny app that will allow us to calculate our caloric needs according to specific parameters such as the size, the weight and the age of our body. 
 
-```
+Then, our foccus will be on the McDonald's food in Switzerland. Therefore, the shiny app will be able to classify products by their nutrition score
+and to illustrate nutritional needs. Thus, we could know which meal will suit us the most according to our caloric needs. It will also allow us to get to know McDonald's food better and eat healthier. 
 
-#schedule
+For more information, we suggest you refer to our video which presents this project in more detail.  
+
+# Schedule
 
 ```{r }
 week <- c("7", "8", "9", "10", "11", "12","13","14")
 
-date <- c("Oct. 26", "Nov. 2","Nov. 9",  "Nov. 16","Nov. 30","Dec. 7","Dec. 14")
+date <- c("Oct. 26", "Nov. 2","Nov. 9",  "Nov. 16","Nov. 23","Nov. 30","Dec. 7", "Dec. 14")
 
-task <- c("project proposal", "data scrapping", "data scrapping + EDA part", "Shiny App",
-          "Shiny App", "12","13","14")
+task <- c("Project proposal", "Data scrapping", "Data wrangling", "Exploratory data analysis",
+          "Shiny App building", "Shiny App developping","Finalize the shiny app and start the report","Finalize the report and prepare the presentation")
 
-person <- c("7", "8", "9", "10", "all group", "all group","all group","all group")
+person <- c("all group", "all group", "all group", "all group", "all group", "all group","all group","all group")
 
 timetable <- cbind(week, date, task, person)
 
-colnames(timetable) <- c("week", "date", "Task", "Person")
+colnames(timetable) <- c("Week", "Date", "Task", "Person")
 
 timetable %>% kable() %>%
   kable_styling(
