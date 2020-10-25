@@ -20,7 +20,7 @@ library(ggplot2)
 
 The main target is to build a shiny app that will allow us to calculate our caloric needs according to specific parameters such as the size, the weight and the age of our body. 
 
-Then, our foccus will be on the McDonald's food in Switzerland. Therefore, the shiny app will be able to classify products by their nutrition score
+Then, our focus will be on the McDonald's food in Switzerland. Therefore, the shiny app will be able to classify products by their nutrition score
 and to illustrate nutritional needs. Thus, we could know which meal will suit us the most according to our caloric needs. It will also allow us to get to know McDonald's food better and eat healthier. 
 
 For more information, we suggest you refer to our video which presents this project in more detail.  
