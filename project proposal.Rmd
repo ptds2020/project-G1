@@ -23,7 +23,10 @@ The main target is to build a shiny app that will allow us to calculate our calo
 Then, our focus will be on the McDonald's food in Switzerland. Therefore, the shiny app will be able to classify products by their nutrition score
 and to illustrate nutritional needs. Thus, we could know which meal will suit us the most according to our caloric needs. It will also allow us to get to know McDonald's food better and eat healthier. 
 
-For more information, we suggest you refer to our video which presents this project in more detail.  
+For more information, we suggest you refer to our video just below which presents this project in more detail.  
+
+<iframe width="800" height="400" src="project-proposal-presentation.mp4" frameborder="0" allowfullscreen></iframe>
+
 
 # Schedule
 
