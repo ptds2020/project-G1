@@ -1,0 +1,37 @@
+```{r}
+library(dplyr)
+library(readxl)
+library(ggplot2)
+library(tidyr)
+library(kableExtra)
+library(here)
+```
+
+
+```{r}
+MacD <- read_excel("data/MacD.xlsx")
+
+df <- MacD[,-c(2,3,13)]
+
+df <- df %>%
+  gather(key = macronut, value = value, -name)
+```
+
+```{r}
+
+df[df[,1] == "Double Cheeseburger avec pain sans gluten",] %>% 
+  ggplot(aes(macronut, value)) +
+    geom_bar(stat = "identity", fill = "blue") + 
+    theme_bw()
+
+
+presentation <- MacD[,-c(2,3)]
+
+nom <- MacD[1,1]
+
+presentation[presentation[,1] == "Big Mac",] %>%
+  kable(booktabs = T, col.names = c("Nom","Poid", "Kcal", "Protéines", "Glucides", "Sugar", "Lipides", "Acides Gras Saturés", "Fibres", "Sel", "Allergies")) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = T)
+
+```
+
