@@ -1,4 +1,10 @@
 library(shiny)
+library(dplyr)
+library(readxl)
+library(ggplot2)
+library(tidyr)
+library(kableExtra)
+library(here)
 
 ui <- fluidPage(
 
