@@ -10,11 +10,14 @@ library(shinydashboard)
 library(reshape2)
 library(plotly)
 library(McDonald)
+library(ECharts2Shiny)
 
 sidebar <- dashboardSidebar(width = 150,
                             sidebarMenu(
                               menuItem("McDonald", tabName = "McDonald"),
-                              menuItem("User", tabName = "User")
+                              menuItem("User", tabName = "User"),
+                              menuItem("Recap", tabName = "Recap")
+
                             ))
 
 body <- dashboardBody(tabItems(
@@ -218,8 +221,24 @@ body <- dashboardBody(tabItems(
     fluidRow(column(9, fluidRow(
       valueBoxOutput("needs")
     )))
-  )
-))
+  ),
+  tabItem(
+    tabName = "Recap",
+    h2("Recap"),
+    fluidRow(column(
+      12,
+      box(
+        title = "Your daily calorie situation",
+        solidHeader = T,
+        width = 14,
+        collapsible = T,
+        plotlyOutput("recap")
+        )
+      )
+    ))
+    ))
+
+
 
 # Burgers <- rep("Burgers", 29) %>% as.data.frame()
 #
@@ -501,6 +520,111 @@ server <- function(input, output) {
       icon = icon("fitness"),
       color = "olive"
     )
+  })
+
+  output$recap <- renderPlotly({
+    MacD <- read_excel(here("data/MacD.xlsx"))
+
+      #Kcal
+    # drink <- "Coca-Cola Zero Small"
+    # salad <- "-"
+    # snack <- "Frites Sma"
+    # burger <- "Big Mac"
+    # sauce <- "Ketchup"
+
+      kcal <- MacD %>%
+        select(Kcal, name) %>%
+        filter(
+          name %in% input$drink |
+            name %in% input$salad |
+            name %in% input$snack |
+            name %in% input$burger |
+            name %in% input$sauce
+        ) %>%
+        summarise(Kcal = sum(Kcal)) %>%
+        pull(Kcal)
+
+    size <- 1:300 %>% as.data.frame()
+    names(size) <- "size"
+    weight <- 1:300 %>% as.data.frame()
+    names(weight) <- "weight"
+    bodyfat <- (1:50)
+    leanfactoremale <-
+      c(rep(1, 14), rep(0.95, 6), rep(0.90, 8), rep(0.85, 22)) %>% as.data.frame()
+    names(leanfactoremale) <- "leanfactor"
+    leanfactorfemale <-
+      c(rep(1, 18), rep(0.95, 10), rep(0.90, 10), rep(0.85, 12)) %>% as.data.frame()
+    names(leanfactorfemale) <- "leanfactor"
+    male <- rep("Male", 50) %>% as_data_frame()
+    valuemalerep <- rep(1, 50) %>% as_data_frame()
+    names(male) <- "gender"
+    names(valuemalerep) <- "value"
+
+    female <- rep("Female", 50) %>% as_data_frame()
+    valuefemalerep <- rep(0.9, 50) %>% as_data_frame()
+    names(female) <- "gender"
+    names(valuefemalerep) <- "value"
+
+
+    measuresmale <-
+      cbind(bodyfat, leanfactoremale, male, valuemalerep)
+    measuresfemale <-
+      cbind(bodyfat, leanfactorfemale, female, valuefemalerep)
+    measures <- rbind(measuresmale, measuresfemale)
+
+    # taille <- 183
+    # poids <- 75
+
+    x <- size %>%
+      filter(size %in% input$size) %>%
+      summarise(size = size)
+
+    y <- weight %>%
+      filter(weight %in% input$weight) %>%
+      summarise(weight = weight)
+
+    #bmi function
+    bmi <- bmi(x, y) %>% round(0) %>% as.numeric()
+    # sexe <- "Male"
+    d <- 24
+    leanfactor <- measures %>%
+      filter(bodyfat == bmi, gender %in% input$gender) %>%
+      summarise(leanfactor)
+
+    coefficient <- measures %>%
+      filter(bodyfat == bmi, gender %in% input$gender) %>%
+      summarise(value)
+
+    bmr <- bmr(y, coefficient, d, leanfactor)
+
+    activity <- c("Very light", "Light", "Moderate", "Heavy", "Very heavy") %>% as.data.frame()
+    names(activity) <- "activity"
+    values <- c(1.3, 1.55, 1.65, 1.80, 2.0) %>% as.data.frame()
+    names(values) <- "values"
+    sport <- cbind(activity, values)
+
+    # what <- "Moderate"
+    multiplier <- sport %>%
+      filter(activity %in% input$activity) %>% summarise(values)
+
+    needs <- needs(bmr, multiplier)
+    names(needs) <- "vec"
+    kcal <- data.frame(kcal)
+    names(kcal) <- "vec"
+    # kcal <- 1300
+    # needs <- 2200
+    tofeed <- needs-kcal
+    names(tofeed) <- "vec"
+    df1<- rbind(kcal, tofeed)
+    df <- data.frame(df1,label=c("Number of consummed kcal", "Number of remaining calories"))
+
+    fig <- plot_ly(df, labels = ~label, values = ~vec, type = 'pie', marker = list(colors = c('#E69F00', '#182844')))
+    fig <- fig %>% layout(
+                          xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
+                          yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE))
+
+    ggplotly(fig)
+
   })
 }
 
