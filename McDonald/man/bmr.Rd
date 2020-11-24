@@ -6,6 +6,15 @@
 \usage{
 bmr(y, coefficient, d, leanfactor)
 }
+\arguments{
+\item{y}{Your weight in kilograms.}
+
+\item{coefficient}{Coefficent that corresponds to the gender: 1 for a male and 0.9 for a female.}
+
+\item{d}{Fix value of 24.}
+
+\item{leanfactor}{Lean factor that depends on the gender and the bmi value (between 0.85 and 1).}
+}
 \description{
 Return the value of the basal metabolic rate (bmr).
 }
