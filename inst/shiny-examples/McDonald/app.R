@@ -33,7 +33,7 @@ body <- dashboardBody(tabItems(
         collapsible = T,
         selectizeInput(
           inputId = "burger",
-          label = "Burgers:",
+          label = "Burgers",
           choices = c(
             "-",
             "Big Mac",
@@ -66,16 +66,56 @@ body <- dashboardBody(tabItems(
             "Bacon & Egg McMuffin",
             "Filet-O-Fish"
           )
-        ),
+        ), sliderInput("servingburger", "", min = 0, max = 9, value = 0, step = 1),
+        selectizeInput(
+          inputId = "burgerbis",
+          label = "Second burger choice",
+          choices = c(
+            "-",
+            "Big Mac",
+            "Big Mac Bacon",
+            "Double Big Mac",
+            "Double Big Mac Bacon",
+            "Cheesburger Royal",
+            "Big Tasty Single",
+            "Big Tasty Single Bacon",
+            "Big Tasty Double",
+            "Big Tasty Double Bacon",
+            "Hamburger avec pain sans gluten",
+            "Cheeseburger avec pain sans gluten",
+            "Double Cheeseburger avec pain sans gluten",
+            "Double Cheeseburger",
+            "Cheeseburger",
+            "Hamburger",
+            "Homestyle Crispy chicken Honey Mustard",
+            "Homestyle Crispy Chicken Tomato",
+            "McChicken",
+            "Homestyle Crispy Chicken Tenders",
+            "Chicken McNuggets 4p",
+            "Chicken McNuggets 6p",
+            "Chicken McNuggets 9p",
+            "Chicken McNuggets 20p",
+            "Homestyle Honey Mustard Veggie",
+            "Homestyle Tomato Veggie",
+            "McVeggie",
+            "McMuffin",
+            "Bacon & Egg McMuffin",
+            "Filet-O-Fish"
+          )
+        ), sliderInput("servingburgerbis", "", min = 0, max = 9, value = 0, step = 1),
         selectizeInput(
           inputId = "snack",
-          label = "Snacks:",
+          label = "Snacks",
           choices = c("-", "Frites Min", "Frites Sma", "Frites Med", "Chicken Wings")
-        ),
-
+        ),sliderInput("servingsnack", "", min = 0, max = 9, value = 0, step = 1),
+        selectizeInput(
+          inputId = "snackbis",
+          label = "Second snack choice",
+          choices = c("-", "Frites Min", "Frites Sma", "Frites Med", "Chicken Wings")
+        ),sliderInput("servingsnackbis", "", min = 0, max = 9, value = 0, step = 1),
         selectizeInput(
           inputId = "sauce",
-          label = "Sauces:",
+          label = "Sauces",
           choices = c(
             "-",
             "Ketchup",
@@ -88,11 +128,26 @@ body <- dashboardBody(tabItems(
             "Sauce Moutarde",
             "Hot Devil Sauce"
           )
-        ),
+        ), sliderInput("servingsauce", "", min = 0, max = 9, value = 0, step = 1), selectizeInput(
+          inputId = "saucebis",
+          label = "Second sauce choice",
+          choices = c(
+            "-",
+            "Ketchup",
+            "Sauce Pommes Frites",
+            "Sauce Barbecue",
+            "Sauce Aigre-douce",
+            "Sauce Cocktail",
+            "Sauce Curry",
+            "Sauce Deluxe Potatoes",
+            "Sauce Moutarde",
+            "Hot Devil Sauce"
+          )
+        ), sliderInput("servingsaucebis", "", min = 0, max = 9, value = 0, step = 1),
 
         selectizeInput(
           inputId = "salad",
-          label = "Salad:",
+          label = "Salad",
           choices = c(
             "-",
             "Caesar Salad Veggie",
@@ -100,15 +155,22 @@ body <- dashboardBody(tabItems(
             "The Grilled Chicken Caesar Salad",
             "Caesar Salad Nature",
             "Petite salade verte",
-            "Carrottes",
+            "Carrottes"
+          )
+        ), sliderInput("servingsalad", "", min = 0, max = 9, value = 0, step = 1 ),
+        selectizeInput(
+          inputId = "saladsauce",
+          label = "Salad Sauce",
+          choices = c(
+            "-",
             "Caesar Dressing",
             "French Dressing"
           )
-        ),
+        ), sliderInput("servingsaladsauce", "", min = 0, max = 9, value = 0, step = 1),
 
         selectizeInput(
           inputId = "drink",
-          label = "Drinks:",
+          label = "Drinks",
           choices = c(
             "-",
             "Coca-Cola mini",
@@ -151,7 +213,36 @@ body <- dashboardBody(tabItems(
             "Chocolat Chaud Regular",
             "Thé"
           )
-        )
+        ), sliderInput("servingdrink", "", min = 0, max = 9, value = 0, step = 1), selectizeInput(
+          inputId = "dessert",
+          label = "Dessert",
+          choices = c(
+            "-",
+            "Frappé Vanille Small",
+            "Frappé Vanille Regular",
+            "Frappé Fraise Small",
+            "Frappé Fraise Regular",
+            "Frappé Mocca Small",
+            "Frappé Mocca Regular",
+            "McFlurry M&M's Regular",
+            "McFlurry M&M's Maxi",
+            "McFlurry Celebrations Regular",
+            "McFlurry Celebrations Maxi",
+            "McFlurry Oreo Regular",
+            "McFlurry Oreo Maxi",
+            "Sundae Cailler Mini",
+            "Sundae Cailler Regular",
+            "Sundae Caramel Mini ",
+            "Sundae Caramel Regular",
+            "Sundae Fraise Mini",
+            "Sundae Fraise  Regular",
+            "Sundae Nature Mini",
+            "Sundae Nature Regular",
+            "Donut fourré au Nutella",
+            "Donut sucre",
+            "Chausson aux pommes",
+            "Compote de Fruits")
+        ), sliderInput("servingdessert", "", min = 0, max = 9, value = 0, step = 1, )
       )
     ),
     column(9, fluidRow(
@@ -161,11 +252,11 @@ body <- dashboardBody(tabItems(
         width = 12,
         collapsible = T,
         plotlyOutput("nutrients")
-      )
-    ))),
-    column(3, fluidRow(valueBoxOutput("calories", {
-      "margin: 5px"
-    })))
+      )), fluidRow(box(fluidRow(valueBoxOutput("calories", width = 12), width = 12)))
+    ))
+    # column(3, fluidRow(valueBoxOutput("calories", {
+    #   "margin: 5px"
+    # })), offset = 3)
   ),
 
   tabItem(
@@ -262,6 +353,8 @@ ui <- dashboardPage(dashboardHeader(title = "Nutrition Calculator"),
 
 server <- function(input, output) {
   MacD <- read_excel(here("data/MacD.xlsx"))
+  # MacD <- read_excel(here("inst/shiny-examples/McDonald/rsconnect/shinyapps.io/mcdonald/MacD.xlsx"))
+
 
   # value boxes
   output$calories <- renderValueBox({
@@ -271,50 +364,182 @@ server <- function(input, output) {
         name %in% input$drink |
           name %in% input$salad |
           name %in% input$snack |
-          name %in% input$burger | name %in% input$sauce
+          name %in% input$snackbis |
+          name %in% input$burger |
+          name %in% input$burgerbis |
+          name %in% input$saladsauce |
+          name %in% input$saucebis |
+          name %in% input$sauce |
+          name %in% input$dessert
+
+      ) %>% mutate(
+        Servingburger = ifelse(name %in% input$burger, as.numeric(input$servingburger), 0),
+        Servingburgerbis = ifelse(name %in% input$burgerbis, as.numeric(input$servingburgerbis), 0),
+        Servingsnack = ifelse(name %in% input$snack, as.numeric(input$servingsnack), 0),
+        Servingsnackbis = ifelse(name %in% input$snackbis, as.numeric(input$servingsnackbis), 0),
+        Servingsauce = ifelse(name %in% input$sauce, as.numeric(input$servingsauce), 0),
+        Servingsaucebis = ifelse(name %in% input$saucebis, as.numeric(input$servingsaucebis), 0),
+        Servingsalad = ifelse(name %in% input$salad, as.numeric(input$servingsalad), 0),
+        Servingsaladsauce = ifelse(name %in% input$saladsauce, as.numeric(input$servingsaladsauce), 0),
+        Servingdrink = ifelse(name %in% input$drink, as.numeric(input$servingdrink), 0),
+        Servingdessert = ifelse(name %in% input$dessert, as.numeric(input$servingdessert), 0),
+
+        Totalburger = ((as.numeric(Kcal) * Servingburger)),
+        Totalburgerbis = ((as.numeric(Kcal) * Servingburgerbis)),
+        Totalsnack = ((as.numeric(Kcal) * Servingsnack)),
+        Totalsnackbis = ((as.numeric(Kcal) * Servingsnackbis)),
+        Totalsauce = ((as.numeric(Kcal) * Servingsauce)),
+        Totalsaucebis = ((as.numeric(Kcal) * Servingsaucebis)),
+        Totalsalad = ((as.numeric(Kcal) * Servingsalad)),
+        Totalsaladsauce = ((as.numeric(Kcal) * Servingsaladsauce)),
+        Totaldrink = ((as.numeric(Kcal) * Servingdrink)),
+        Totaldessert = ((as.numeric(Kcal) * Servingdessert))
+
       ) %>%
-      summarise(Kcal = sum(Kcal)) %>%
+      summarise(Kcal = sum(Totalburger, Totalburgerbis, Totalsnack, Totalsnackbis, Totalsauce, Totalsaucebis, Totalsalad, Totalsaladsauce,Totaldrink, Totaldessert)) %>%
       pull(Kcal)
 
     valueBox("Kcal",
              paste0(kcal, " kcal"),
-             icon = icon("fire"),
+             icon = icon("fas fa-fire-alt"),
              color = "yellow")
   })
 
   output$nutrients <- renderPlotly({
-    d <- MacD %>%
-      select(proteine,
-             glucides,
-             sucre,
-             lipides,
-             acides_gras_Sat,
-             fibres,
-             sel,
-             name) %>%
-      filter(
-        name %in% input$drink |
-          name %in% input$salad |
-          name %in% input$snack |
-          name %in% input$burger | name %in% input$sauce
-      ) %>%
-      summarise(
-        Proteine = sum(proteine),
-        Glucides = sum(glucides),
-        Sucres = sum(sucre),
-        Lipides = sum(lipides),
-        Acide_Gras = sum(acides_gras_Sat),
-        Fibres = sum(fibres),
-        Sel = sum(sel)
-      )
+      d <- MacD %>%
+          select(proteine,
+                 glucides,
+                 sucre,
+                 lipides,
+                 acides_gras_Sat,
+                 fibres,
+                 sel,
+                 name) %>%
+        filter(
+          name %in% input$drink |
+            name %in% input$salad |
+            name %in% input$snack |
+            name %in% input$snackbis |
+            name %in% input$burger |
+            name %in% input$burgerbis |
+            name %in% input$saladsauce |
+            name %in% input$saucebis |
+            name %in% input$sauce |
+            name %in% input$dessert
+          ) %>%
+        mutate(
+          Servingburger = ifelse(name %in% input$burger, as.numeric(input$servingburger), 0),
+          Servingburgerbis = ifelse(name %in% input$burgerbis, as.numeric(input$servingburgerbis), 0),
+          Servingsnack = ifelse(name %in% input$snack, as.numeric(input$servingsnack), 0),
+          Servingsnackbis = ifelse(name %in% input$snackbis, as.numeric(input$servingsnackbis), 0),
+          Servingsauce = ifelse(name %in% input$sauce, as.numeric(input$servingsauce), 0),
+          Servingsaucebis = ifelse(name %in% input$saucebis, as.numeric(input$servingsaucebis), 0),
+          Servingsalad = ifelse(name %in% input$salad, as.numeric(input$servingsalad), 0),
+          Servingsaladsauce= ifelse(name %in% input$saladsauce, as.numeric(input$servingsaladsauce), 0),
+          Servingdrink = ifelse(name %in% input$drink, as.numeric(input$servingdrink), 0),
+          Servingdessert = ifelse(name %in% input$dessert, as.numeric(input$servingdessert), 0))
+
+
+      d <-  d %>% mutate(Totalburgerprot = ((as.numeric(proteine) * Servingburger)),
+                          Totalburgergluc = ((as.numeric(glucides) * Servingburger)),
+                          Totalburgersug = ((as.numeric(sucre) * Servingburger)),
+                          Totalburgerlip = ((as.numeric(lipides) * Servingburger)),
+                          Totalburgeracid = ((as.numeric(acides_gras_Sat) * Servingburger)),
+                          Totalburgerfiber = ((as.numeric(fibres) * Servingburger)),
+                          Totalburgersalt = ((as.numeric(sel) * Servingburger)),
+
+                         Totalburgerbisprot = ((as.numeric(proteine) * Servingburgerbis)),
+                         Totalburgerbisgluc = ((as.numeric(glucides) * Servingburgerbis)),
+                         Totalburgerbissug = ((as.numeric(sucre) * Servingburgerbis)),
+                         Totalburgerbislip = ((as.numeric(lipides) * Servingburgerbis)),
+                         Totalburgerbisacid = ((as.numeric(acides_gras_Sat) * Servingburgerbis)),
+                         Totalburgerbisfiber = ((as.numeric(fibres) * Servingburgerbis)),
+                         Totalburgerbissalt = ((as.numeric(sel) * Servingburgerbis)),
+
+                          Totalsnackprot = ((as.numeric(proteine) * Servingsnack)),
+                          Totalsnackgluc = ((as.numeric(glucides) * Servingsnack)),
+                          Totalsnacksug = ((as.numeric(sucre) * Servingsnack)),
+                          Totalsnacklip = ((as.numeric(lipides) * Servingsnack)),
+                          Totalsnackacid = ((as.numeric(acides_gras_Sat) * Servingsnack)),
+                          Totalsnackfiber = ((as.numeric(fibres) * Servingsnack)),
+                          Totalsnacksalt = ((as.numeric(sel) * Servingsnack)),
+
+                         Totalsnackbisprot = ((as.numeric(proteine) * Servingsnackbis)),
+                         Totalsnackbisgluc = ((as.numeric(glucides) * Servingsnackbis)),
+                         Totalsnackbissug = ((as.numeric(sucre) * Servingsnackbis)),
+                         Totalsnackbislip = ((as.numeric(lipides) * Servingsnackbis)),
+                         Totalsnackbisacid = ((as.numeric(acides_gras_Sat) * Servingsnackbis)),
+                         Totalsnackbisfiber = ((as.numeric(fibres) * Servingsnackbis)),
+                         Totalsnackbissalt = ((as.numeric(sel) * Servingsnackbis)),
+
+                          Totalsauceprot = ((as.numeric(proteine) * Servingsauce)),
+                          Totalsaucegluc = ((as.numeric(glucides) * Servingsauce)),
+                          Totalsaucesug = ((as.numeric(sucre) * Servingsauce)),
+                          Totalsaucelip = ((as.numeric(lipides) * Servingsauce)),
+                          Totalsauceacid = ((as.numeric(acides_gras_Sat) * Servingsauce)),
+                          Totalsaucefiber = ((as.numeric(fibres) * Servingsauce)),
+                          Totalsaucesalt = ((as.numeric(sel) * Servingsauce)),
+
+                          Totalsaucebisprot = ((as.numeric(proteine) * Servingsaucebis)),
+                          Totalsaucebisgluc = ((as.numeric(glucides) * Servingsaucebis)),
+                          Totalsaucebissug = ((as.numeric(sucre) * Servingsaucebis)),
+                          Totalsaucebislip = ((as.numeric(lipides) * Servingsaucebis)),
+                          Totalsaucebisacid = ((as.numeric(acides_gras_Sat) * Servingsaucebis)),
+                          Totalsaucebisfiber = ((as.numeric(fibres) * Servingsaucebis)),
+                          Totalsaucebissalt = ((as.numeric(sel) * Servingsaucebis)),
+
+                          Totalsaladprot = ((as.numeric(proteine) * Servingsalad)),
+                          Totalsaladgluc = ((as.numeric(glucides) * Servingsalad)),
+                          Totalsaladsug = ((as.numeric(sucre) * Servingsalad)),
+                          Totalsaladlip = ((as.numeric(lipides) * Servingsalad)),
+                          Totalsaladacid = ((as.numeric(acides_gras_Sat) * Servingsalad)),
+                          Totalsaladfiber = ((as.numeric(fibres) * Servingsalad)),
+                          Totalsaladsalt = ((as.numeric(sel) * Servingsalad)),
+
+                          Totalsaladsauceprot = ((as.numeric(proteine) * Servingsaladsauce)),
+                          Totalsaladsaucegluc = ((as.numeric(glucides) * Servingsaladsauce)),
+                          Totalsaladsaucesug = ((as.numeric(sucre) * Servingsaladsauce)),
+                          Totalsaladsaucelip = ((as.numeric(lipides) * Servingsaladsauce)),
+                          Totalsaladsauceacid = ((as.numeric(acides_gras_Sat) * Servingsaladsauce)),
+                          Totalsaladsaucefiber = ((as.numeric(fibres) * Servingsaladsauce)),
+                          Totalsaladsaucesalt = ((as.numeric(sel) * Servingsaladsauce)),
+
+                          Totaldrinkprot = ((as.numeric(proteine) * Servingdrink)),
+                          Totaldrinkgluc = ((as.numeric(glucides) * Servingdrink)),
+                          Totaldrinksug = ((as.numeric(sucre) * Servingdrink)),
+                          Totaldrinklip = ((as.numeric(lipides) * Servingdrink)),
+                          Totaldrinkacid = ((as.numeric(acides_gras_Sat) * Servingdrink)),
+                          Totaldrinkfiber = ((as.numeric(fibres) * Servingdrink)),
+                          Totaldrinksalt = ((as.numeric(sel) * Servingdrink)),
+
+                          Totaldessertprot = ((as.numeric(proteine) * Servingdessert)),
+                          Totaldessertgluc = ((as.numeric(glucides) * Servingdessert)),
+                          Totaldessertsug = ((as.numeric(sucre) * Servingdessert)),
+                          Totaldessertlip = ((as.numeric(lipides) * Servingdessert)),
+                          Totaldessertacid = ((as.numeric(acides_gras_Sat) * Servingdessert)),
+                          Totaldessertfiber = ((as.numeric(fibres) * Servingdessert)),
+                          Totaldessertsalt = ((as.numeric(sel) * Servingdessert)))
+
+
+
+      e <- d %>%
+        summarise(
+          Proteine = sum(sum(Totaldessertprot), sum(Totalburgerprot), sum(Totalburgerbisprot), sum(Totalsnackprot), sum(Totalsnackbisprot), sum(Totalsauceprot), sum(Totalsaucebisprot), sum(Totalsaladprot), sum(Totalsaladsauceprot),sum(Totaldrinkprot)),
+          Glucides = sum(sum(Totaldessertgluc), sum(Totalburgergluc), sum(Totalburgerbisgluc), sum(Totalsnackgluc), sum(Totalsnackbisgluc), sum(Totalsaucegluc), sum(Totalsaucebisgluc), sum(Totalsaladgluc), sum(Totalsaladsaucegluc) ,sum(Totaldrinkgluc)),
+          Sucres = sum(sum(Totaldessertsug), sum(Totalburgersug), sum(Totalburgerbissug), sum(Totalsnacksug), sum(Totalsnackbissug), sum(Totalsaucesug), sum(Totalsaucebissug), sum(Totalsaladsug), sum(Totalsaladsaucesug), sum(Totaldrinksug)),
+          Lipides = sum(sum(Totaldessertlip), sum(Totalburgerlip), sum(Totalburgerbislip), sum(Totalsnacklip), sum(Totalsnackbislip), sum(Totalsaucelip), sum(Totalsaucebislip), sum(Totalsaladlip), sum(Totalsaladsaucelip), sum(Totaldrinklip)),
+          Acide_Gras = sum(sum(Totaldessertacid), sum(Totalburgeracid), sum(Totalburgerbisacid), sum(Totalsnackacid), sum(Totalsnackbisacid), sum(Totalsauceacid), sum(Totalsaucebisacid), sum(Totalsaladacid), sum(Totalsaladsauceacid), sum(Totaldrinkacid)),
+          Fibres = sum(sum(Totaldessertfiber), sum(Totalburgerfiber), sum(Totalburgerbisfiber), sum(Totalsnackfiber), sum(Totalsnackbisfiber), sum(Totalsaucefiber), sum(Totalsaucebisfiber), sum(Totalsaladfiber), sum(Totalsaladsaucefiber), sum(Totaldrinkfiber)),
+          Sel = sum(sum(Totaldessertsalt), sum(Totalburgersalt), sum(Totalburgerbissalt), sum(Totalsnacksalt), sum(Totalsnackbissalt), sum(Totalsaucesalt), sum(Totalsaucebissalt), sum(Totalsaladsalt), sum(Totalsaladsaucesalt), sum(Totaldrinksalt))
+        )
     # pull(Proteine, Glucides, Sucres, Lipides, Acide_Gras, Fibres, Sel)
 
-    d <- d %>% melt()
+    e <- e %>% melt()
 
     # req(input$name)
-    plottest <- d %>% ggplot(aes(variable, value)) +
+    plottest <- e %>% ggplot(aes(variable, value)) +
       geom_bar(stat = "identity", fill = "#E69F00") +
-      theme_bw()
+      theme_bw() + labs(y= "Value in grams", x = "Nutrient")
     ggplotly(plottest)
   })
 
@@ -345,7 +570,7 @@ server <- function(input, output) {
 
     valueBox("BMI",
              paste0(bmi, " BMI"),
-             icon = icon("fitness"),
+             icon = icon(""),
              color = "blue")
   })
 
@@ -524,6 +749,7 @@ server <- function(input, output) {
 
   output$recap <- renderPlotly({
     MacD <- read_excel(here("data/MacD.xlsx"))
+    # MacD <- read_excel(here("inst/shiny-examples/McDonald/rsconnect/shinyapps.io/mcdonald/MacD.xlsx"))
 
       #Kcal
     # drink <- "Coca-Cola Zero Small"
@@ -532,17 +758,46 @@ server <- function(input, output) {
     # burger <- "Big Mac"
     # sauce <- "Ketchup"
 
-      kcal <- MacD %>%
-        select(Kcal, name) %>%
-        filter(
-          name %in% input$drink |
-            name %in% input$salad |
-            name %in% input$snack |
-            name %in% input$burger |
-            name %in% input$sauce
-        ) %>%
-        summarise(Kcal = sum(Kcal)) %>%
-        pull(Kcal)
+    kcal <- MacD %>%
+      select(Kcal, name) %>%
+      filter(
+        name %in% input$drink |
+          name %in% input$salad |
+          name %in% input$snack |
+          name %in% input$snackbis |
+          name %in% input$burger |
+          name %in% input$burgerbis |
+          name %in% input$saladsauce |
+          name %in% input$saucebis |
+          name %in% input$sauce |
+          name %in% input$dessert
+
+      ) %>% mutate(
+        Servingburger = ifelse(name %in% input$burger, as.numeric(input$servingburger), 0),
+        Servingburgerbis = ifelse(name %in% input$burgerbis, as.numeric(input$servingburgerbis), 0),
+        Servingsnack = ifelse(name %in% input$snack, as.numeric(input$servingsnack), 0),
+        Servingsnackbis = ifelse(name %in% input$snackbis, as.numeric(input$servingsnackbis), 0),
+        Servingsauce = ifelse(name %in% input$sauce, as.numeric(input$servingsauce), 0),
+        Servingsaucebis = ifelse(name %in% input$saucebis, as.numeric(input$servingsaucebis), 0),
+        Servingsalad = ifelse(name %in% input$salad, as.numeric(input$servingsalad), 0),
+        Servingsaladsauce = ifelse(name %in% input$saladsauce, as.numeric(input$servingsaladsauce), 0),
+        Servingdrink = ifelse(name %in% input$drink, as.numeric(input$servingdrink), 0),
+        Servingdessert = ifelse(name %in% input$dessert, as.numeric(input$servingdessert), 0),
+
+        Totalburger = ((as.numeric(Kcal) * Servingburger)),
+        Totalburgerbis = ((as.numeric(Kcal) * Servingburgerbis)),
+        Totalsnack = ((as.numeric(Kcal) * Servingsnack)),
+        Totalsnackbis = ((as.numeric(Kcal) * Servingsnackbis)),
+        Totalsauce = ((as.numeric(Kcal) * Servingsauce)),
+        Totalsaucebis = ((as.numeric(Kcal) * Servingsaucebis)),
+        Totalsalad = ((as.numeric(Kcal) * Servingsalad)),
+        Totalsaladsauce = ((as.numeric(Kcal) * Servingsaladsauce)),
+        Totaldrink = ((as.numeric(Kcal) * Servingdrink)),
+        Totaldessert = ((as.numeric(Kcal) * Servingdessert))
+
+      ) %>%
+      summarise(Kcal = sum(Totalburger, Totalburgerbis, Totalsnack, Totalsnackbis, Totalsauce, Totalsaucebis, Totalsalad, Totalsaladsauce,Totaldrink, Totaldessert)) %>%
+      pull(Kcal)
 
     size <- 1:300 %>% as.data.frame()
     names(size) <- "size"
@@ -630,3 +885,4 @@ server <- function(input, output) {
 
 # Run the application
 shinyApp(ui = ui, server = server)
+

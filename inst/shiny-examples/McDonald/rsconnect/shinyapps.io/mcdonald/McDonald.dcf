@@ -1,0 +1,12 @@
+name: McDonald
+title: McDonald
+username:
+account: mcdonald
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 3330389
+bundleId: 3927451
+url: https://mcdonald.shinyapps.io/McDonald/
+when: 1606826681.56034
+asMultiple: FALSE
+asStatic: FALSE
