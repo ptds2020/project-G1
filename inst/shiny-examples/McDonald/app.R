@@ -301,8 +301,17 @@ body <- dashboardBody(tabItems(
           choices = c("Very light", "Light", "Moderate", "Heavy", "Very heavy"),
           selected="Moderate"
         )
+      )),## add cedric
+      column(9, fluidRow(
+        box(
+          title = "nutri",
+          solidHeader = T,
+          width = 12,
+          collapsible = T,
+          plotlyOutput("nutri")
+        ))##
       )
-    )),
+    ),
     fluidRow(column(9, fluidRow(
       valueBoxOutput("bmi")
     ))),
@@ -542,6 +551,56 @@ server <- function(input, output) {
       theme_bw() + labs(y= "Value in grams", x = "Nutrient")
     ggplotly(plottest)
   })
+
+  #add cedric
+  output$nutri <- renderPlotly({
+    size <- 1:300 %>% as.data.frame()
+    names(size) <- "size"
+    weight <- 1:300 %>% as.data.frame()
+    names(weight) <- "weight"
+
+    x <- size %>%
+      filter(size %in% input$size) %>%
+      summarise(size = size)
+
+    y <- weight %>%
+      filter(weight %in% input$weight) %>%
+      summarise(weight = weight)
+
+
+    bmi_val <- bmi(x, y) %>% round(2) %>% as.numeric()
+
+
+    fig <- plot_ly(
+      type = "indicator",
+      mode = "gauge+number+delta",
+      value = bmi_val,
+      title = list(text = "BMI", font = list(size = 24)),
+      delta = list(reference = 25, increasing = list(color = "red")),
+      gauge = list(
+        axis = list(range = list(NULL, 35), tickwidth = 1, tickcolor = "black"),
+        bar = list(color = "black"),
+        bgcolor = "white",
+        borderwidth = 2,
+        bordercolor = "gray",
+        steps = list(
+          list(range = c(0, 18.5), color = "palegreen"),
+          list(range = c(18.5, 24.9), color = "green"),
+          list(range = c(25, 29.9), color = "red"),
+          list(range = c(30, 34.9), color = "firebrick")),
+        threshold = list(
+          line = list(color = "yellow", width = 2),
+          thickness = 1,
+          value = 25)))
+    fig <- fig %>%
+      layout(
+        margin = list(l=20,r=30),
+        paper_bgcolor = "lavender",
+        font = list(color = "darkblue", family = "Arial"))
+
+    ggplotly(fig)
+  })##
+
 
   output$bmi <- renderValueBox({
     size <- 1:300 %>% as.data.frame()
