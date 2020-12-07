@@ -18,3 +18,6 @@ bmr(y, coefficient, d, leanfactor)
 \description{
 Return the value of the basal metabolic rate (bmr).
 }
+\examples{
+bmr(y=75, coefficient = 1, d = 24, leanfactor = 0.9)
+}

@@ -359,9 +359,8 @@ body <- dashboardBody(tabItems(
 ui <- dashboardPage(dashboardHeader(title = "Nutrition Calculator"),
                     sidebar, body)
 
-
 server <- function(input, output) {
-  MacD <- read_excel(here("data/MacD.xlsx"))
+  MacD <- read_excel(here("extdata/MacD.xlsx"))
   # MacD <- read_excel(here("inst/shiny-examples/McDonald/rsconnect/shinyapps.io/mcdonald/MacD.xlsx"))
 
 
@@ -807,7 +806,7 @@ server <- function(input, output) {
   })
 
   output$recap <- renderPlotly({
-    MacD <- read_excel(here("data/MacD.xlsx"))
+    MacD <- read_excel(here("extdata/MacD.xlsx"))
     # MacD <- read_excel(here("inst/shiny-examples/McDonald/rsconnect/shinyapps.io/mcdonald/MacD.xlsx"))
 
       #Kcal

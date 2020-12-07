@@ -1,6 +1,6 @@
 Package: McDonald
 Type: Package
-Title: Calculate BMI, BMR, calorie need and run the shiny app
+Title: Calculate BMI, BMR, calorie need, walking time to expense the calorie intake and run the shiny app
 Version: 0.1.0
 Authors@R: c(
     person("Gaëtan", "Lovey", email="gaetan.lovey@unil.ch", role=c("aut","cre")),
@@ -8,8 +8,8 @@ Authors@R: c(
     person("Jérémy","Bayer", email="jeremy.bayer@unil.ch", role="ctb"),
     person("Raffaello", "Raffin", email="raffaello.raffin@unil.ch", role="ctb"))
 Maintainer: Gaëtan Lovey <gaetan.lovey@unil.ch>
-Description: Function to calculate your BMI, your BMR and your calorie need.
-License: MIT | LICENSE
+Description: Function to calculate your BMI, your BMR, your calorie need and the walking time to expense your calorie intake.
+License: GPL (>=2)
 Depends: R (>= 3.5.0)
 Imports: 
     magrittr,

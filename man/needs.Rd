@@ -14,3 +14,6 @@ needs(bmr, multiplier)
 \description{
 Return the daily calorie need for a person.
 }
+\examples{
+needs(bmr=1620, multiplier=1.65)
+}
