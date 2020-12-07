@@ -9,8 +9,9 @@ library(here)
 library(shinydashboard)
 library(reshape2)
 library(plotly)
-library(McDonald)
 library(ECharts2Shiny)
+library(McDonald)
+
 
 sidebar <- dashboardSidebar(width = 150,
                             sidebarMenu(
