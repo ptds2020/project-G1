@@ -24,11 +24,10 @@ sidebar <- dashboardSidebar(width = 150,
 body <- dashboardBody(tabItems(
   tabItem(
     tabName = "McDonald",
-    h2("McDonald"),
     fluidRow(column(
       3,
       box(
-        title = "Menus",
+        title = "Select your Menu",
         solidHeader = T,
         width = 14,
         collapsible = T,
@@ -262,11 +261,10 @@ body <- dashboardBody(tabItems(
 
   tabItem(
     tabName = "User",
-    h2("User"),
     fluidRow(column(
       3,
       box(
-        title = "User",
+        title = "Your data",
         solidHeader = T,
         width = 14,
         collapsible = T,
@@ -305,7 +303,7 @@ body <- dashboardBody(tabItems(
       )),## add cedric
       column(9, fluidRow(
         box(
-          title = "nutri",
+          title = "BMI",
           solidHeader = T,
           width = 12,
           collapsible = T,
@@ -325,7 +323,6 @@ body <- dashboardBody(tabItems(
   ),
   tabItem(
     tabName = "Recap",
-    h2("Recap"),
     fluidRow(column(
       12,
       box(
@@ -336,7 +333,17 @@ body <- dashboardBody(tabItems(
         plotlyOutput("recap")
         )
       )
-    ))
+    ),
+    fluidRow(column(
+      12,
+      box(
+        title = "Walking time",
+        solidHeader = T,
+        width = 14,
+        collapsible = T,
+        textOutput("walk")
+      )))
+    )
     ))
 
 
@@ -575,7 +582,6 @@ server <- function(input, output) {
       type = "indicator",
       mode = "gauge+number+delta",
       value = bmi_val,
-      title = list(text = "BMI", font = list(size = 24)),
       delta = list(reference = 25, increasing = list(color = "red")),
       gauge = list(
         axis = list(range = list(NULL, 35), tickwidth = 1, tickcolor = "black"),
@@ -595,7 +601,7 @@ server <- function(input, output) {
     fig <- fig %>%
       layout(
         margin = list(l=20,r=30),
-        paper_bgcolor = "lavender",
+        paper_bgcolor = "white",
         font = list(color = "darkblue", family = "Arial"))
 
     ggplotly(fig)
@@ -628,7 +634,7 @@ server <- function(input, output) {
 
 
     valueBox("BMI",
-             paste0(bmi, " BMI"),
+             paste(bmi),
              icon = icon(""),
              color = "blue")
   })
@@ -703,7 +709,7 @@ server <- function(input, output) {
 
 
     valueBox("BMR",
-             paste0(bmr, " BMR"),
+             paste(bmr),
              icon = icon("fitness"),
              color = "red")
   })
@@ -800,7 +806,7 @@ server <- function(input, output) {
 
     valueBox(
       "Calorie need",
-      paste0(needs, " Calorie need"),
+      paste(needs, "kcal"),
       icon = icon("fitness"),
       color = "olive"
     )
@@ -930,7 +936,7 @@ server <- function(input, output) {
     tofeed <- needs-kcal
     names(tofeed) <- "vec"
     df1<- rbind(kcal, tofeed)
-    df <- data.frame(df1,label=c("Number of consummed kcal", "Number of remaining calories"))
+    df <- data.frame(df1,label=c("Number of consummed calories", "Number of remaining calories"))
 
     fig <- plot_ly(df, labels = ~label, values = ~vec, type = 'pie', marker = list(colors = c('#E69F00', '#182844')))
     fig <- fig %>% layout(
@@ -940,6 +946,65 @@ server <- function(input, output) {
     ggplotly(fig)
 
   })
+
+ #add Raf
+  output$walk <- renderText({
+
+    kcal <- MacD %>%
+      select(Kcal, name) %>%
+      filter(
+        name %in% input$drink |
+          name %in% input$salad |
+          name %in% input$snack |
+          name %in% input$snackbis |
+          name %in% input$burger |
+          name %in% input$burgerbis |
+          name %in% input$saladsauce |
+          name %in% input$saucebis |
+          name %in% input$sauce |
+          name %in% input$dessert
+
+      ) %>% mutate(
+        Servingburger = ifelse(name %in% input$burger, as.numeric(input$servingburger), 0),
+        Servingburgerbis = ifelse(name %in% input$burgerbis, as.numeric(input$servingburgerbis), 0),
+        Servingsnack = ifelse(name %in% input$snack, as.numeric(input$servingsnack), 0),
+        Servingsnackbis = ifelse(name %in% input$snackbis, as.numeric(input$servingsnackbis), 0),
+        Servingsauce = ifelse(name %in% input$sauce, as.numeric(input$servingsauce), 0),
+        Servingsaucebis = ifelse(name %in% input$saucebis, as.numeric(input$servingsaucebis), 0),
+        Servingsalad = ifelse(name %in% input$salad, as.numeric(input$servingsalad), 0),
+        Servingsaladsauce = ifelse(name %in% input$saladsauce, as.numeric(input$servingsaladsauce), 0),
+        Servingdrink = ifelse(name %in% input$drink, as.numeric(input$servingdrink), 0),
+        Servingdessert = ifelse(name %in% input$dessert, as.numeric(input$servingdessert), 0),
+
+        Totalburger = ((as.numeric(Kcal) * Servingburger)),
+        Totalburgerbis = ((as.numeric(Kcal) * Servingburgerbis)),
+        Totalsnack = ((as.numeric(Kcal) * Servingsnack)),
+        Totalsnackbis = ((as.numeric(Kcal) * Servingsnackbis)),
+        Totalsauce = ((as.numeric(Kcal) * Servingsauce)),
+        Totalsaucebis = ((as.numeric(Kcal) * Servingsaucebis)),
+        Totalsalad = ((as.numeric(Kcal) * Servingsalad)),
+        Totalsaladsauce = ((as.numeric(Kcal) * Servingsaladsauce)),
+        Totaldrink = ((as.numeric(Kcal) * Servingdrink)),
+        Totaldessert = ((as.numeric(Kcal) * Servingdessert))
+
+      ) %>%
+      summarise(Kcal = sum(Totalburger, Totalburgerbis, Totalsnack, Totalsnackbis, Totalsauce, Totalsaucebis, Totalsalad, Totalsaladsauce,Totaldrink, Totaldessert)) %>%
+      pull(Kcal)
+
+    weight <- 1:300 %>% as.data.frame()
+    names(weight) <- "weight"
+
+    y <- weight %>%
+      filter(weight %in% input$weight) %>%
+      summarise(weight = weight)
+
+    u <- round(kcal/((3*3.5*y)/200))
+    v <- round(kcal/((4.5*3.5*y)/200))
+
+    paste("To burn the calories you ate you have to walk:", u, "minutes at a normal pace or", v, "minutes at a fast pace.")
+  })
+
+
 }
 
 # Run the application
