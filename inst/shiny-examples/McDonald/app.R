@@ -301,8 +301,16 @@ body <- dashboardBody(tabItems(
           label = "Activity:",
           choices = c("Very light", "Light", "Moderate", "Heavy", "Very heavy"),
           selected="Moderate"
-        )
-      )),## add cedric
+        ),
+        box(#ici il faudrait insérer l'image bmi_image.jpg
+          title = "Instructions",
+          status = "primary",
+          solidHeader = F,
+          collapsible = F,
+          width = 12,
+          textOutput("bmi_tabel"))
+
+      )),## add cedric modify indicator position
       column(9, fluidRow(
         box(
           title = "BMI",
@@ -310,18 +318,13 @@ body <- dashboardBody(tabItems(
           width = 12,
           collapsible = T,
           plotlyOutput("nutri")
-        ))##
-      )
-    ),
-    fluidRow(column(9, fluidRow(
-      valueBoxOutput("bmi")
-    ))),
-    fluidRow(column(9, fluidRow(
-      valueBoxOutput("bmr")
-    ))),
-    fluidRow(column(9, fluidRow(
-      valueBoxOutput("needs")
-    )))
+        ##
+    )),
+    valueBoxOutput("bmi"),
+    valueBoxOutput("bmr"),
+    valueBoxOutput("needs")
+    )
+  )
   ),
   tabItem(
     tabName = "Recap",
