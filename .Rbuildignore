@@ -5,3 +5,5 @@
 ^.git
 ^.gitignore
 ^robots.txt
+^packrat/
+^\.Rprofile$

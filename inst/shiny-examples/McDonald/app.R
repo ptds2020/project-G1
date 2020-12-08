@@ -1,4 +1,6 @@
 
+# remotes::install_github("ptds2020/project-G1")
+
 library(shiny)
 library(dplyr)
 library(readxl)
