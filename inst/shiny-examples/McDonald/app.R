@@ -301,14 +301,7 @@ body <- dashboardBody(tabItems(
           label = "Activity:",
           choices = c("Very light", "Light", "Moderate", "Heavy", "Very heavy"),
           selected="Moderate"
-        ),
-        box(#ici il faudrait insérer l'image bmi_image.jpg
-          title = "Instructions",
-          status = "primary",
-          solidHeader = F,
-          collapsible = F,
-          width = 12,
-          textOutput("bmi_tabel"))
+        )
 
       )),## add cedric modify indicator position
       column(9, fluidRow(
@@ -322,7 +315,9 @@ body <- dashboardBody(tabItems(
     )),
     valueBoxOutput("bmi"),
     valueBoxOutput("bmr"),
-    valueBoxOutput("needs")
+    valueBoxOutput("needs"),
+    h2("BMI classification", align = "center"),
+    img(src = "bmi_image_copy.png", style="display: block; margin-left: auto; margin-right: auto;")
     )
   )
   ),
