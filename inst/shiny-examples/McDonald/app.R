@@ -347,7 +347,7 @@ body <- dashboardBody(tabItems(
       12,
       box(
         title = "Walking time",
-        img(src = "walking_man.png", style="display: block; margin-left: auto; margin-right: auto;", width = 70, height = 70, align = "center"),
+        img(src = "walking_man.png", style="display: block; margin-left: auto; margin-right: auto;", width = 70, height = 70, align = "left"),
         solidHeader = T,
         width = 14,
         collapsible = T,
@@ -355,8 +355,7 @@ body <- dashboardBody(tabItems(
         tags$head(tags$style("#walk{font-size: 17px
                                  }", align = "center"
         )
-        ),
-      img(src = "walking_man.png", style="display: block; margin-left: auto; margin-right: auto;", width = 70, height = 70, align = "center")
+        )
       )))
     )
     ))
