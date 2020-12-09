@@ -26,7 +26,8 @@ sidebar <- dashboardSidebar(width = 150,
 body <- dashboardBody(tabItems(
   tabItem(
     tabName = "McDonald",
-    fluidRow(column(
+    fluidRow(
+             column(style = "overflow-y: auto; position:fixed; width:300px; top:0; bottom:0;; right:0",
       3,
       box(
         title = "Select your Menu",
@@ -68,7 +69,10 @@ body <- dashboardBody(tabItems(
             "Bacon & Egg McMuffin",
             "Filet-O-Fish"
           )
-        ), sliderInput("servingburger", "", min = 0, max = 9, value = 0, step = 1),
+        ),
+
+        sliderInput("servingburger", "", min = 0, max = 9, value = 1, step = 1, round = T),
+
         selectizeInput(
           inputId = "burgerbis",
           label = "Second burger choice",
@@ -103,18 +107,18 @@ body <- dashboardBody(tabItems(
             "McMuffin",
             "Bacon & Egg McMuffin",
             "Filet-O-Fish"
-          )
-        ), sliderInput("servingburgerbis", "", min = 0, max = 9, value = 0, step = 1),
+          ),
+        ), sliderInput("servingburgerbis", "", min = 0, max = 9, value = 1, step = 1),
         selectizeInput(
           inputId = "snack",
           label = "Snacks",
           choices = c("-", "Frites Min", "Frites Sma", "Frites Med", "Chicken Wings")
-        ),sliderInput("servingsnack", "", min = 0, max = 9, value = 0, step = 1),
+        ),sliderInput("servingsnack", "", min = 0, max = 9, value = 1, step = 1),
         selectizeInput(
           inputId = "snackbis",
           label = "Second snack choice",
           choices = c("-", "Frites Min", "Frites Sma", "Frites Med", "Chicken Wings")
-        ),sliderInput("servingsnackbis", "", min = 0, max = 9, value = 0, step = 1),
+        ),sliderInput("servingsnackbis", "", min = 0, max = 9, value = 1, step = 1),
         selectizeInput(
           inputId = "sauce",
           label = "Sauces",
@@ -130,7 +134,7 @@ body <- dashboardBody(tabItems(
             "Sauce Moutarde",
             "Hot Devil Sauce"
           )
-        ), sliderInput("servingsauce", "", min = 0, max = 9, value = 0, step = 1), selectizeInput(
+        ), sliderInput("servingsauce", "", min = 0, max = 9, value = 1, step = 1), selectizeInput(
           inputId = "saucebis",
           label = "Second sauce choice",
           choices = c(
@@ -145,7 +149,7 @@ body <- dashboardBody(tabItems(
             "Sauce Moutarde",
             "Hot Devil Sauce"
           )
-        ), sliderInput("servingsaucebis", "", min = 0, max = 9, value = 0, step = 1),
+        ), sliderInput("servingsaucebis", "", min = 0, max = 9, value = 1, step = 1),
 
         selectizeInput(
           inputId = "salad",
@@ -159,7 +163,7 @@ body <- dashboardBody(tabItems(
             "Petite salade verte",
             "Carrottes"
           )
-        ), sliderInput("servingsalad", "", min = 0, max = 9, value = 0, step = 1 ),
+        ), sliderInput("servingsalad", "", min = 0, max = 9, value = 1, step = 1 ),
         selectizeInput(
           inputId = "saladsauce",
           label = "Salad Sauce",
@@ -168,7 +172,7 @@ body <- dashboardBody(tabItems(
             "Caesar Dressing",
             "French Dressing"
           )
-        ), sliderInput("servingsaladsauce", "", min = 0, max = 9, value = 0, step = 1),
+        ), sliderInput("servingsaladsauce", "", min = 0, max = 9, value = 1, step = 1),
 
         selectizeInput(
           inputId = "drink",
@@ -215,7 +219,7 @@ body <- dashboardBody(tabItems(
             "Chocolat Chaud Regular",
             "Thé"
           )
-        ), sliderInput("servingdrink", "", min = 0, max = 9, value = 0, step = 1), selectizeInput(
+        ), sliderInput("servingdrink", "", min = 0, max = 9, value = 1, step = 1), selectizeInput(
           inputId = "dessert",
           label = "Dessert",
           choices = c(
@@ -244,18 +248,23 @@ body <- dashboardBody(tabItems(
             "Donut sucre",
             "Chausson aux pommes",
             "Compote de Fruits")
-        ), sliderInput("servingdessert", "", min = 0, max = 9, value = 0, step = 1, )
+        ), sliderInput("servingdessert", "", min = 0, max = 9, value = 1, step = 1)
       )
     ),
-    column(9, fluidRow(
+    column(9,
+           fluidRow(
       box(
         title = "Nutrients",
         solidHeader = T,
         width = 12,
         collapsible = T,
         plotlyOutput("nutrients")
-      )), fluidRow(box(fluidRow(valueBoxOutput("calories", width = 12), width = 12)))
-    ))
+      ))
+      ,(fluidRow(valueBoxOutput("calories", width = 12), width = 12))
+    )
+    )
+
+
     # column(3, fluidRow(valueBoxOutput("calories", {
     #   "margin: 5px"
     # })), offset = 3)
@@ -338,10 +347,16 @@ body <- dashboardBody(tabItems(
       12,
       box(
         title = "Walking time",
+        img(src = "walking_man.png", style="display: block; margin-left: auto; margin-right: auto;", width = 70, height = 70, align = "center"),
         solidHeader = T,
         width = 14,
         collapsible = T,
-        textOutput("walk")
+      textOutput("walk"),align = "center",
+        tags$head(tags$style("#walk{font-size: 17px
+                                 }", align = "center"
+        )
+        ),
+      img(src = "walking_man.png", style="display: block; margin-left: auto; margin-right: auto;", width = 70, height = 70, align = "center")
       )))
     )
     ))
@@ -415,11 +430,12 @@ server <- function(input, output) {
       summarise(Kcal = sum(Totalburger, Totalburgerbis, Totalsnack, Totalsnackbis, Totalsauce, Totalsaucebis, Totalsalad, Totalsaladsauce,Totaldrink, Totaldessert)) %>%
       pull(Kcal)
 
-    valueBox("Kcal",
+        valueBox("Kcal",
              paste0(kcal, " kcal"),
              icon = icon("fas fa-fire-alt"),
              color = "yellow")
   })
+
 
   output$nutrients <- renderPlotly({
       d <- MacD %>%
