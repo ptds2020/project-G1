@@ -11,7 +11,7 @@ walking_time(y, MET, e, f, kcal)
 
 \item{MET}{Metabolic Equivalent of Task (normal walking = 3, fast walking = 4.5).}
 
-\item{e}{Fix value of 3.5M.}
+\item{e}{Fix value of 3.5.}
 
 \item{f}{Fix value of 200.}
 
@@ -19,6 +19,8 @@ walking_time(y, MET, e, f, kcal)
 }
 \description{
 Returns the walking time in minutes useful for expending the calories absorbed.
+
+Walking time = Kcal/((MET*3.5*Weight)/200)
 }
 \examples{
 walking_time(y=75, MET = 3, e = 3.5, f = 200, kcal = 800)

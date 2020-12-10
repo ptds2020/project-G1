@@ -1,5 +1,7 @@
-#' @title BMI
-#' @description Return the value of the body mass index (bmi).
+#' @title Body Mass Index (BMI)
+#' @description Return the value of the body mass index (BMI)
+#'
+#' BMI = Weight/Size^2
 #' @param x Your size in centimeters.
 #' @param y Your weight in kilograms.
 #' @export

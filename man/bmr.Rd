@@ -2,7 +2,7 @@
 % Please edit documentation in R/bmr.R
 \name{bmr}
 \alias{bmr}
-\title{BMR}
+\title{Basal Metobolic Rate (BMR)}
 \usage{
 bmr(y, coefficient, d, leanfactor)
 }
@@ -16,7 +16,9 @@ bmr(y, coefficient, d, leanfactor)
 \item{leanfactor}{Lean factor that depends on the gender and the bmi value (between 0.85 and 1).}
 }
 \description{
-Return the value of the basal metabolic rate (bmr).
+Return the value of the basal metabolic rate (BMR).
+
+BMR = Weight*Coefficient*24*LeanFactor
 }
 \examples{
 bmr(y=75, coefficient = 1, d = 24, leanfactor = 0.9)

@@ -2,7 +2,7 @@
 % Please edit documentation in R/bmi.R
 \name{bmi}
 \alias{bmi}
-\title{BMI}
+\title{Body Mass Index (BMI)}
 \usage{
 bmi(x, y)
 }
@@ -12,7 +12,9 @@ bmi(x, y)
 \item{y}{Your weight in kilograms.}
 }
 \description{
-Return the value of the body mass index (bmi).
+Return the value of the body mass index (BMI)
+
+BMI = Weight/Size^2
 }
 \examples{
 bmi(x=183, y=75)

@@ -266,10 +266,6 @@ body <- dashboardBody(tabItems(
       )
     )
 
-
-    # column(3, fluidRow(valueBoxOutput("calories", {
-    #   "margin: 5px"
-    # })), offset = 3)
   ),
 
   tabItem(
@@ -281,10 +277,6 @@ body <- dashboardBody(tabItems(
         solidHeader = T,
         width = 16,
         collapsible = T,
-
-        # selectizeInput(inputId = "age",
-        #                label = "Age:",
-        #                choices = 0:99),
 
         selectizeInput(
           inputId = "gender",
@@ -317,7 +309,7 @@ body <- dashboardBody(tabItems(
         img(src = "bmi_image_copy.png",height="100%", width="100%", style="display: block; margin-left: auto; margin-right: auto;")
 
 
-      )),## add cedric modify indicator position
+      )),
       column(8, fluidRow(
         box(
           title = "BMI",
@@ -325,7 +317,7 @@ body <- dashboardBody(tabItems(
           width = 12,
           collapsible = T,
           plotlyOutput("nutri")
-          ##
+
         )),
         valueBoxOutput("bmi"),
         valueBoxOutput("bmr"),
@@ -365,6 +357,7 @@ body <- dashboardBody(tabItems(
             box(
               title = "BMI information", solidHeader = T,
               width = 14,
+              height = 200,
               collapsible = T,
               textOutput("bmi_information"),align = "left",
               tags$head(tags$style("#walk{font-size: 17px
@@ -377,8 +370,9 @@ body <- dashboardBody(tabItems(
               box(
                 title = "BMR information",solidHeader = T,
                 width = 14,
+                height = 200,
                 collapsible = T,
-                textOutput("bmr_information"),align = "left",
+                textOutput("bmr_information"), align = "left",
                 tags$head(tags$style("#walk{font-size: 17px
                                  }", align = "left"
                 )
@@ -388,8 +382,9 @@ body <- dashboardBody(tabItems(
             column(
               4,
               box(
-                title = "Walking time", solidHeader = T,
+                title = "Calorie need", solidHeader = T,
                 width = 14,
+                height = 200,
                 collapsible = T,
                 textOutput("cal_need"),align = "left",
                 tags$head(tags$style("#walk{font-size: 17px
@@ -401,32 +396,12 @@ body <- dashboardBody(tabItems(
 ))
 
 
-
-# Burgers <- rep("Burgers", 29) %>% as.data.frame()
-#
-# Fries <- rep("Fries and sauces", 13) %>% as.data.frame()
-#
-# Salads <- rep("Salads", 8) %>% as.data.frame()
-#
-# Drinks <- rep("Drinks",39 ) %>% as.data.frame()
-#
-# df <-rbind(Burgers, Fries, Salads, Drinks)
-# names(df) <- "class"
-#
-# MacD <- cbind(MacD, df)
-
-
-#------------
-
 ui <- dashboardPage(dashboardHeader(title = "Nutrition Calculator"),
                     sidebar, body)
 
 server <- function(input, output) {
   MacD <- read_excel(here("extdata/MacD.xlsx"))
-  # MacD <- read_excel(here("inst/shiny-examples/McDonald/rsconnect/shinyapps.io/mcdonald/MacD.xlsx"))
 
-
-  # value boxes
   output$calories <- renderValueBox({
     kcal <- MacD %>%
       select(Kcal, name) %>%
@@ -603,18 +578,15 @@ server <- function(input, output) {
         Fibres = sum(sum(Totaldessertfiber), sum(Totalburgerfiber), sum(Totalburgerbisfiber), sum(Totalsnackfiber), sum(Totalsnackbisfiber), sum(Totalsaucefiber), sum(Totalsaucebisfiber), sum(Totalsaladfiber), sum(Totalsaladsaucefiber), sum(Totaldrinkfiber)),
         Sel = sum(sum(Totaldessertsalt), sum(Totalburgersalt), sum(Totalburgerbissalt), sum(Totalsnacksalt), sum(Totalsnackbissalt), sum(Totalsaucesalt), sum(Totalsaucebissalt), sum(Totalsaladsalt), sum(Totalsaladsaucesalt), sum(Totaldrinksalt))
       )
-    # pull(Proteine, Glucides, Sucres, Lipides, Acide_Gras, Fibres, Sel)
 
     e <- e %>% melt()
 
-    # req(input$name)
     plottest <- e %>% ggplot(aes(variable, value)) +
       geom_bar(stat = "identity", fill = "#E69F00") +
       theme_bw() + labs(y= "Value in grams", x = "Nutrient")
     ggplotly(plottest)
   })
 
-  #add cedric
   output$nutri <- renderPlotly({
     size <- 1:300 %>% as.data.frame()
     names(size) <- "size"
@@ -657,7 +629,7 @@ server <- function(input, output) {
         font = list(color = "darkblue", family = "Arial"))
 
     ggplotly(fig)
-  })##
+  })
 
 
   output$bmi <- renderValueBox({
@@ -673,14 +645,6 @@ server <- function(input, output) {
     y <- weight %>%
       filter(weight %in% input$weight) %>%
       summarise(weight = weight)
-
-    # x <- bmi_size
-    # y <- bmi_weight
-
-    # bmi <- function(x, y) {
-    #   bmi_final <- (y / (x * x)) * 10000
-    #   bmi_final
-    # }
 
     bmi <- bmi(x, y) %>% round(2) %>% as.numeric()
 
@@ -720,8 +684,6 @@ server <- function(input, output) {
       cbind(bodyfat, leanfactorfemale, female, valuefemalerep)
     measures <- rbind(measuresmale, measuresfemale)
 
-    # taille <- 183
-    # poids <- 75
 
     x <- size %>%
       filter(size %in% input$size) %>%
@@ -730,17 +692,9 @@ server <- function(input, output) {
     y <- weight %>%
       filter(weight %in% input$weight) %>%
       summarise(weight = weight)
-    #
-    # x <- bmi_size
-    # y <- bmi_weight
-    #
-    # bmi <- function(x, y) {
-    #   bmi_final <- (y / (x * x)) * 10000
-    #   bmi_final
-    # }
+
 
     bmi <- bmi(x, y) %>% round(0) %>% as.numeric()
-    # sexe <- "male"
     d <- 24
     leanfactor <- measures %>%
       filter(bodyfat == bmi, gender %in% input$gender) %>%
@@ -751,13 +705,7 @@ server <- function(input, output) {
       summarise(value)
 
 
-    # bmr <- function(y, coefficient, d, leanfactor) {
-    #   bmr_final <- (y * coefficient * d * leanfactor)
-    #   bmr_final
-    # }
-    #
     bmr <- bmr(y, coefficient, d, leanfactor)
-
 
 
     valueBox("BMR",
@@ -795,8 +743,6 @@ server <- function(input, output) {
       cbind(bodyfat, leanfactorfemale, female, valuefemalerep)
     measures <- rbind(measuresmale, measuresfemale)
 
-    # taille <- 183
-    # poids <- 75
 
     x <- size %>%
       filter(size %in% input$size) %>%
@@ -805,14 +751,6 @@ server <- function(input, output) {
     y <- weight %>%
       filter(weight %in% input$weight) %>%
       summarise(weight = weight)
-    #
-    # x <- bmi_size
-    # y <- bmi_weight
-    #
-    # bmi <- function(x, y) {
-    #   bmi_final <- (y / (x * x)) * 10000
-    #   bmi_final
-    # }
 
     #bmi function
     bmi <- bmi(x, y) %>% round(0) %>% as.numeric()
@@ -826,12 +764,6 @@ server <- function(input, output) {
       filter(bodyfat == bmi, gender %in% input$gender) %>%
       summarise(value)
 
-
-    # bmr <- function(y, coefficient, d, leanfactor) {
-    #   bmr_final <- (y * coefficient * d * leanfactor)
-    #   bmr_final
-    # }
-
     # bmr function
     bmr <- bmr(y, coefficient, d, leanfactor)
 
@@ -842,19 +774,11 @@ server <- function(input, output) {
     names(values) <- "values"
     sport <- cbind(activity, values)
 
-    # what <- "moderate"
     multiplier <- sport %>%
       filter(activity %in% input$activity) %>% summarise(values)
 
-
-    # needs <- function(bmr, multiplier) {
-    #   needs_final <- (bmr * multiplier)
-    #   needs_final
-    # }
-
+    #need function
     needs <- needs(bmr, multiplier)
-
-
 
     valueBox(
       "Calorie need",
@@ -866,14 +790,6 @@ server <- function(input, output) {
 
   output$recap <- renderPlotly({
     MacD <- read_excel(here("extdata/MacD.xlsx"))
-    # MacD <- read_excel(here("inst/shiny-examples/McDonald/rsconnect/shinyapps.io/mcdonald/MacD.xlsx"))
-
-    #Kcal
-    # drink <- "Coca-Cola Zero Small"
-    # salad <- "-"
-    # snack <- "Frites Sma"
-    # burger <- "Big Mac"
-    # sauce <- "Ketchup"
 
     kcal <- MacD %>%
       select(Kcal, name) %>%
@@ -944,9 +860,6 @@ server <- function(input, output) {
       cbind(bodyfat, leanfactorfemale, female, valuefemalerep)
     measures <- rbind(measuresmale, measuresfemale)
 
-    # taille <- 183
-    # poids <- 75
-
     x <- size %>%
       filter(size %in% input$size) %>%
       summarise(size = size)
@@ -955,9 +868,7 @@ server <- function(input, output) {
       filter(weight %in% input$weight) %>%
       summarise(weight = weight)
 
-    #bmi function
     bmi <- bmi(x, y) %>% round(0) %>% as.numeric()
-    # sexe <- "Male"
     d <- 24
     leanfactor <- measures %>%
       filter(bodyfat == bmi, gender %in% input$gender) %>%
@@ -975,7 +886,6 @@ server <- function(input, output) {
     names(values) <- "values"
     sport <- cbind(activity, values)
 
-    # what <- "Moderate"
     multiplier <- sport %>%
       filter(activity %in% input$activity) %>% summarise(values)
 
@@ -983,8 +893,6 @@ server <- function(input, output) {
     names(needs) <- "vec"
     kcal <- data.frame(kcal)
     names(kcal) <- "vec"
-    # kcal <- 1300
-    # needs <- 2200
     tofeed <- needs-kcal
     names(tofeed) <- "vec"
     df1<- rbind(kcal, tofeed)
@@ -999,7 +907,6 @@ server <- function(input, output) {
 
   })
 
-  #add Raf
   output$walk <- renderText({
 
     kcal <- MacD %>%
@@ -1062,13 +969,13 @@ server <- function(input, output) {
     A high BMI can be an indicator of high body fatness.
     BMI can be used to screen for weight categories that
     may lead to health problems but it is not diagnostic
-    of the body fatness or health of an individual.y"
+    of the body fatness or health of an individual."
   })
 
   output$bmr_information <- renderText({
     "Basal Metabolic Rate, also known as BMR, is the amount
     of energy your body burns at rest on a daily basis.
-    In other words: It is the number of calories required to
+    In other words, it is the number of calories required to
     keep your body function while you are not doing any physical activities."
   })
 
