@@ -18,8 +18,8 @@ library(McDonald)
 sidebar <- dashboardSidebar(width = 150,
                             sidebarMenu(
                               menuItem("McDonald", tabName = "McDonald"),
-                              menuItem("User", tabName = "User"),
-                              menuItem("Recap", tabName = "Recap")
+                              menuItem("User data", tabName = "User"),
+                              menuItem("Summary", tabName = "Summary")
 
                             ))
 
@@ -331,7 +331,7 @@ body <- dashboardBody(tabItems(
   )
   ),
   tabItem(
-    tabName = "Recap",
+    tabName = "Summary",
     fluidRow(column(
       12,
       box(
@@ -599,20 +599,17 @@ server <- function(input, output) {
       value = bmi_val,
       delta = list(reference = 25, increasing = list(color = "red")),
       gauge = list(
-        axis = list(range = list(NULL, 35), tickwidth = 1, tickcolor = "black"),
+        axis = list(range = list(NULL, 40), tickwidth = 1, tickcolor = "black"),
         bar = list(color = "black"),
         bgcolor = "white",
         borderwidth = 2,
         bordercolor = "gray",
         steps = list(
-          list(range = c(0, 18.5), color = "palegreen"),
-          list(range = c(18.5, 24.9), color = "green"),
-          list(range = c(25, 29.9), color = "red"),
-          list(range = c(30, 34.9), color = "firebrick")),
-        threshold = list(
-          line = list(color = "yellow", width = 2),
-          thickness = 1,
-          value = 25)))
+          list(range = c(0, 18.49), color = "#00FFCC"),
+          list(range = c(18.5, 24.99), color = "#33CC33"),
+          list(range = c(25, 29.99), color = "#FF9900"),
+          list(range = c(30, 34.99), color = "#FF6600"),
+          list(range = c(35, 40), color = "red"))))
     fig <- fig %>%
       layout(
         margin = list(l=20,r=30),
@@ -659,20 +656,20 @@ server <- function(input, output) {
     names(size) <- "size"
     weight <- 1:300 %>% as.data.frame()
     names(weight) <- "weight"
-    bodyfat <- (1:50)
+    bodyfat <- (1:100)
     leanfactoremale <-
-      c(rep(1, 14), rep(0.95, 6), rep(0.90, 8), rep(0.85, 22)) %>% as.data.frame()
+      c(rep(1, 14), rep(0.95, 6), rep(0.90, 8), rep(0.85, 72)) %>% as.data.frame()
     names(leanfactoremale) <- "leanfactor"
     leanfactorfemale <-
-      c(rep(1, 18), rep(0.95, 10), rep(0.90, 10), rep(0.85, 12)) %>% as.data.frame()
+      c(rep(1, 18), rep(0.95, 10), rep(0.90, 10), rep(0.85, 62)) %>% as.data.frame()
     names(leanfactorfemale) <- "leanfactor"
-    male <- rep("Male", 50) %>% as_data_frame()
-    valuemalerep <- rep(1, 50) %>% as_data_frame()
+    male <- rep("Male", 100) %>% as_data_frame()
+    valuemalerep <- rep(1, 100) %>% as_data_frame()
     names(male) <- "gender"
     names(valuemalerep) <- "value"
 
-    female <- rep("Female", 50) %>% as_data_frame()
-    valuefemalerep <- rep(0.9, 50) %>% as_data_frame()
+    female <- rep("Female", 100) %>% as_data_frame()
+    valuefemalerep <- rep(0.9, 100) %>% as_data_frame()
     names(female) <- "gender"
     names(valuefemalerep) <- "value"
 
@@ -734,20 +731,20 @@ server <- function(input, output) {
     names(size) <- "size"
     weight <- 1:300 %>% as.data.frame()
     names(weight) <- "weight"
-    bodyfat <- (1:50)
+    bodyfat <- (1:100)
     leanfactoremale <-
-      c(rep(1, 14), rep(0.95, 6), rep(0.90, 8), rep(0.85, 22)) %>% as.data.frame()
+      c(rep(1, 14), rep(0.95, 6), rep(0.90, 8), rep(0.85, 72)) %>% as.data.frame()
     names(leanfactoremale) <- "leanfactor"
     leanfactorfemale <-
-      c(rep(1, 18), rep(0.95, 10), rep(0.90, 10), rep(0.85, 12)) %>% as.data.frame()
+      c(rep(1, 18), rep(0.95, 10), rep(0.90, 10), rep(0.85, 62)) %>% as.data.frame()
     names(leanfactorfemale) <- "leanfactor"
-    male <- rep("Male", 50) %>% as_data_frame()
-    valuemalerep <- rep(1, 50) %>% as_data_frame()
+    male <- rep("Male", 100) %>% as_data_frame()
+    valuemalerep <- rep(1, 100) %>% as_data_frame()
     names(male) <- "gender"
     names(valuemalerep) <- "value"
 
-    female <- rep("Female", 50) %>% as_data_frame()
-    valuefemalerep <- rep(0.9, 50) %>% as_data_frame()
+    female <- rep("Female", 100) %>% as_data_frame()
+    valuefemalerep <- rep(0.9, 100) %>% as_data_frame()
     names(female) <- "gender"
     names(valuefemalerep) <- "value"
 
@@ -883,20 +880,20 @@ server <- function(input, output) {
     names(size) <- "size"
     weight <- 1:300 %>% as.data.frame()
     names(weight) <- "weight"
-    bodyfat <- (1:50)
+    bodyfat <- (1:100)
     leanfactoremale <-
-      c(rep(1, 14), rep(0.95, 6), rep(0.90, 8), rep(0.85, 22)) %>% as.data.frame()
+      c(rep(1, 14), rep(0.95, 6), rep(0.90, 8), rep(0.85, 72)) %>% as.data.frame()
     names(leanfactoremale) <- "leanfactor"
     leanfactorfemale <-
-      c(rep(1, 18), rep(0.95, 10), rep(0.90, 10), rep(0.85, 12)) %>% as.data.frame()
+      c(rep(1, 18), rep(0.95, 10), rep(0.90, 10), rep(0.85, 62)) %>% as.data.frame()
     names(leanfactorfemale) <- "leanfactor"
-    male <- rep("Male", 50) %>% as_data_frame()
-    valuemalerep <- rep(1, 50) %>% as_data_frame()
+    male <- rep("Male", 100) %>% as_data_frame()
+    valuemalerep <- rep(1, 100) %>% as_data_frame()
     names(male) <- "gender"
     names(valuemalerep) <- "value"
 
-    female <- rep("Female", 50) %>% as_data_frame()
-    valuefemalerep <- rep(0.9, 50) %>% as_data_frame()
+    female <- rep("Female", 100) %>% as_data_frame()
+    valuefemalerep <- rep(0.9, 100) %>% as_data_frame()
     names(female) <- "gender"
     names(valuefemalerep) <- "value"
 
@@ -1016,7 +1013,7 @@ server <- function(input, output) {
     u <- round(kcal/((3*3.5*y)/200))
     v <- round(kcal/((4.5*3.5*y)/200))
 
-    paste("To burn the calories you ate you have to walk:", u, "minutes at a normal pace or", v, "minutes at a fast pace.")
+    paste("To burn the calories absorbed, you need to walk:", u, "minute(s) at a normal pace or", v, "minute(s) at a fast pace.")
   })
 
 
