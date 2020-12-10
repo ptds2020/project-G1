@@ -20,7 +20,8 @@ sidebar <- dashboardSidebar(width = 150,
                             sidebarMenu(
                               menuItem("McDonald", tabName = "McDonald"),
                               menuItem("User data", tabName = "User"),
-                              menuItem("Summary", tabName = "Summary")
+                              menuItem("Summary", tabName = "Summary"),
+                              menuItem("Information", tabName = "Information")
 
                             ))
 
@@ -28,241 +29,241 @@ body <- dashboardBody(tabItems(
   tabItem(
     tabName = "McDonald",
     fluidRow(
-             column(style = "overflow-y: auto; position:fixed; width:300px; top:0; bottom:0;; right:0",
-      3,
-      box(
-        title = "Select your Menu",
-        solidHeader = T,
-        width = 14,
-        collapsible = T,
-        selectizeInput(
-          inputId = "burger",
-          label = "Burgers",
-          choices = c(
-            "-",
-            "Big Mac",
-            "Big Mac Bacon",
-            "Double Big Mac",
-            "Double Big Mac Bacon",
-            "Cheesburger Royal",
-            "Big Tasty Single",
-            "Big Tasty Single Bacon",
-            "Big Tasty Double",
-            "Big Tasty Double Bacon",
-            "Hamburger avec pain sans gluten",
-            "Cheeseburger avec pain sans gluten",
-            "Double Cheeseburger avec pain sans gluten",
-            "Double Cheeseburger",
-            "Cheeseburger",
-            "Hamburger",
-            "Homestyle Crispy chicken Honey Mustard",
-            "Homestyle Crispy Chicken Tomato",
-            "McChicken",
-            "Homestyle Crispy Chicken Tenders",
-            "Chicken McNuggets 4p",
-            "Chicken McNuggets 6p",
-            "Chicken McNuggets 9p",
-            "Chicken McNuggets 20p",
-            "Homestyle Honey Mustard Veggie",
-            "Homestyle Tomato Veggie",
-            "McVeggie",
-            "McMuffin",
-            "Bacon & Egg McMuffin",
-            "Filet-O-Fish"
-          )
-        ),
+      column(style = "overflow-y: auto; position:fixed; width:300px; top:0; bottom:0;; right:0",
+             3,
+             box(
+               title = "Select your Menu",
+               solidHeader = T,
+               width = 14,
+               collapsible = T,
+               selectizeInput(
+                 inputId = "burger",
+                 label = "Burgers",
+                 choices = c(
+                   "-",
+                   "Big Mac",
+                   "Big Mac Bacon",
+                   "Double Big Mac",
+                   "Double Big Mac Bacon",
+                   "Cheesburger Royal",
+                   "Big Tasty Single",
+                   "Big Tasty Single Bacon",
+                   "Big Tasty Double",
+                   "Big Tasty Double Bacon",
+                   "Hamburger avec pain sans gluten",
+                   "Cheeseburger avec pain sans gluten",
+                   "Double Cheeseburger avec pain sans gluten",
+                   "Double Cheeseburger",
+                   "Cheeseburger",
+                   "Hamburger",
+                   "Homestyle Crispy chicken Honey Mustard",
+                   "Homestyle Crispy Chicken Tomato",
+                   "McChicken",
+                   "Homestyle Crispy Chicken Tenders",
+                   "Chicken McNuggets 4p",
+                   "Chicken McNuggets 6p",
+                   "Chicken McNuggets 9p",
+                   "Chicken McNuggets 20p",
+                   "Homestyle Honey Mustard Veggie",
+                   "Homestyle Tomato Veggie",
+                   "McVeggie",
+                   "McMuffin",
+                   "Bacon & Egg McMuffin",
+                   "Filet-O-Fish"
+                 )
+               ),
 
-        tags$style(type = "text/css", ".irs-grid-pol.small {height: 0px;}"), chooseSliderSkin("Modern", color = "orange"), sliderInput("servingburger", "", min = 0, max = 5, value = 1),
+               tags$style(type = "text/css", ".irs-grid-pol.small {height: 0px;}"), chooseSliderSkin("Modern", color = "orange"), sliderInput("servingburger", "", min = 0, max = 5, value = 1),
 
-        selectizeInput(
-          inputId = "burgerbis",
-          label = "Second burger choice",
-          choices = c(
-            "-",
-            "Big Mac",
-            "Big Mac Bacon",
-            "Double Big Mac",
-            "Double Big Mac Bacon",
-            "Cheesburger Royal",
-            "Big Tasty Single",
-            "Big Tasty Single Bacon",
-            "Big Tasty Double",
-            "Big Tasty Double Bacon",
-            "Hamburger avec pain sans gluten",
-            "Cheeseburger avec pain sans gluten",
-            "Double Cheeseburger avec pain sans gluten",
-            "Double Cheeseburger",
-            "Cheeseburger",
-            "Hamburger",
-            "Homestyle Crispy chicken Honey Mustard",
-            "Homestyle Crispy Chicken Tomato",
-            "McChicken",
-            "Homestyle Crispy Chicken Tenders",
-            "Chicken McNuggets 4p",
-            "Chicken McNuggets 6p",
-            "Chicken McNuggets 9p",
-            "Chicken McNuggets 20p",
-            "Homestyle Honey Mustard Veggie",
-            "Homestyle Tomato Veggie",
-            "McVeggie",
-            "McMuffin",
-            "Bacon & Egg McMuffin",
-            "Filet-O-Fish"
-          ),
-        ), sliderInput("servingburgerbis", "", min = 0, max = 5, value = 1, step = 1),
-        selectizeInput(
-          inputId = "snack",
-          label = "Snacks",
-          choices = c("-", "Frites Min", "Frites Sma", "Frites Med", "Chicken Wings")
-        ),sliderInput("servingsnack", "", min = 0, max = 5, value = 1, step = 1),
-        selectizeInput(
-          inputId = "snackbis",
-          label = "Second snack choice",
-          choices = c("-", "Frites Min", "Frites Sma", "Frites Med", "Chicken Wings")
-        ),sliderInput("servingsnackbis", "", min = 0, max = 5, value = 1, step = 1),
-        selectizeInput(
-          inputId = "sauce",
-          label = "Sauces",
-          choices = c(
-            "-",
-            "Ketchup",
-            "Sauce Pommes Frites",
-            "Sauce Barbecue",
-            "Sauce Aigre-douce",
-            "Sauce Cocktail",
-            "Sauce Curry",
-            "Sauce Deluxe Potatoes",
-            "Sauce Moutarde",
-            "Hot Devil Sauce"
-          )
-        ), sliderInput("servingsauce", "", min = 0, max = 5, value = 1, step = 1), selectizeInput(
-          inputId = "saucebis",
-          label = "Second sauce choice",
-          choices = c(
-            "-",
-            "Ketchup",
-            "Sauce Pommes Frites",
-            "Sauce Barbecue",
-            "Sauce Aigre-douce",
-            "Sauce Cocktail",
-            "Sauce Curry",
-            "Sauce Deluxe Potatoes",
-            "Sauce Moutarde",
-            "Hot Devil Sauce"
-          )
-        ), sliderInput("servingsaucebis", "", min = 0, max = 5, value = 1, step = 1),
+               selectizeInput(
+                 inputId = "burgerbis",
+                 label = "Second burger choice",
+                 choices = c(
+                   "-",
+                   "Big Mac",
+                   "Big Mac Bacon",
+                   "Double Big Mac",
+                   "Double Big Mac Bacon",
+                   "Cheesburger Royal",
+                   "Big Tasty Single",
+                   "Big Tasty Single Bacon",
+                   "Big Tasty Double",
+                   "Big Tasty Double Bacon",
+                   "Hamburger avec pain sans gluten",
+                   "Cheeseburger avec pain sans gluten",
+                   "Double Cheeseburger avec pain sans gluten",
+                   "Double Cheeseburger",
+                   "Cheeseburger",
+                   "Hamburger",
+                   "Homestyle Crispy chicken Honey Mustard",
+                   "Homestyle Crispy Chicken Tomato",
+                   "McChicken",
+                   "Homestyle Crispy Chicken Tenders",
+                   "Chicken McNuggets 4p",
+                   "Chicken McNuggets 6p",
+                   "Chicken McNuggets 9p",
+                   "Chicken McNuggets 20p",
+                   "Homestyle Honey Mustard Veggie",
+                   "Homestyle Tomato Veggie",
+                   "McVeggie",
+                   "McMuffin",
+                   "Bacon & Egg McMuffin",
+                   "Filet-O-Fish"
+                 ),
+               ), sliderInput("servingburgerbis", "", min = 0, max = 5, value = 1, step = 1),
+               selectizeInput(
+                 inputId = "snack",
+                 label = "Snacks",
+                 choices = c("-", "Frites Min", "Frites Sma", "Frites Med", "Chicken Wings")
+               ),sliderInput("servingsnack", "", min = 0, max = 5, value = 1, step = 1),
+               selectizeInput(
+                 inputId = "snackbis",
+                 label = "Second snack choice",
+                 choices = c("-", "Frites Min", "Frites Sma", "Frites Med", "Chicken Wings")
+               ),sliderInput("servingsnackbis", "", min = 0, max = 5, value = 1, step = 1),
+               selectizeInput(
+                 inputId = "sauce",
+                 label = "Sauces",
+                 choices = c(
+                   "-",
+                   "Ketchup",
+                   "Sauce Pommes Frites",
+                   "Sauce Barbecue",
+                   "Sauce Aigre-douce",
+                   "Sauce Cocktail",
+                   "Sauce Curry",
+                   "Sauce Deluxe Potatoes",
+                   "Sauce Moutarde",
+                   "Hot Devil Sauce"
+                 )
+               ), sliderInput("servingsauce", "", min = 0, max = 5, value = 1, step = 1), selectizeInput(
+                 inputId = "saucebis",
+                 label = "Second sauce choice",
+                 choices = c(
+                   "-",
+                   "Ketchup",
+                   "Sauce Pommes Frites",
+                   "Sauce Barbecue",
+                   "Sauce Aigre-douce",
+                   "Sauce Cocktail",
+                   "Sauce Curry",
+                   "Sauce Deluxe Potatoes",
+                   "Sauce Moutarde",
+                   "Hot Devil Sauce"
+                 )
+               ), sliderInput("servingsaucebis", "", min = 0, max = 5, value = 1, step = 1),
 
-        selectizeInput(
-          inputId = "salad",
-          label = "Salad",
-          choices = c(
-            "-",
-            "Caesar Salad Veggie",
-            "The Crispy Chicken Caesar Salad",
-            "The Grilled Chicken Caesar Salad",
-            "Caesar Salad Nature",
-            "Petite salade verte",
-            "Carrottes"
-          )
-        ), sliderInput("servingsalad", "", min = 0, max = 5, value = 1, step = 1 ),
-        selectizeInput(
-          inputId = "saladsauce",
-          label = "Salad Sauce",
-          choices = c(
-            "-",
-            "Caesar Dressing",
-            "French Dressing"
-          )
-        ), sliderInput("servingsaladsauce", "", min = 0, max = 5, value = 1, step = 1),
+               selectizeInput(
+                 inputId = "salad",
+                 label = "Salad",
+                 choices = c(
+                   "-",
+                   "Caesar Salad Veggie",
+                   "The Crispy Chicken Caesar Salad",
+                   "The Grilled Chicken Caesar Salad",
+                   "Caesar Salad Nature",
+                   "Petite salade verte",
+                   "Carrottes"
+                 )
+               ), sliderInput("servingsalad", "", min = 0, max = 5, value = 1, step = 1 ),
+               selectizeInput(
+                 inputId = "saladsauce",
+                 label = "Salad Sauce",
+                 choices = c(
+                   "-",
+                   "Caesar Dressing",
+                   "French Dressing"
+                 )
+               ), sliderInput("servingsaladsauce", "", min = 0, max = 5, value = 1, step = 1),
 
-        selectizeInput(
-          inputId = "drink",
-          label = "Drinks",
-          choices = c(
-            "-",
-            "Coca-Cola mini",
-            "Coca-Cola Small",
-            "Coca-Cola Medium",
-            "Coca-Cola Zero mini",
-            "Coca-Cola Zero Small",
-            "Coca-Cola Zero Medium",
-            "Sprite Zero mini",
-            "Sprite Zero Small",
-            "Sprite Zero Medium",
-            "Fanta Zero mini",
-            "Fanta Zero Small",
-            "Fanta Zero Medium",
-            "Lipton Ice Tea mini",
-            "Lipton Ice Tea Small",
-            "Lipton Ice Tea Medium",
-            "Henniez Naturelle",
-            "Henniez Légère",
-            "Jus d'orange Tropicana",
-            "Schorle Pomme",
-            "Smoothie Bottled Tropical Chia",
-            "Smoothie Bottled Berries",
-            "Red Bull",
-            "Frappé Vanille Small",
-            "Frappé Vanille Regular",
-            "Frappé Fraise Small",
-            "Frappé Fraise Regular",
-            "Frappé Mocca Small",
-            "Frappé Mocca Regular",
-            "Ristretto",
-            "Espresso",
-            "Café Crème",
-            "Cappuccino Small",
-            "Cappuccino Regular",
-            "Latte Macchiato Small",
-            "Latte Macchiato Regular",
-            "Café renversé",
-            "Chocolat Chaud Small",
-            "Chocolat Chaud Regular",
-            "Thé"
-          )
-        ), sliderInput("servingdrink", "", min = 0, max = 5, value = 1, step = 1), selectizeInput(
-          inputId = "dessert",
-          label = "Dessert",
-          choices = c(
-            "-",
-            "Frappé Vanille Small",
-            "Frappé Vanille Regular",
-            "Frappé Fraise Small",
-            "Frappé Fraise Regular",
-            "Frappé Mocca Small",
-            "Frappé Mocca Regular",
-            "McFlurry M&M's Regular",
-            "McFlurry M&M's Maxi",
-            "McFlurry Celebrations Regular",
-            "McFlurry Celebrations Maxi",
-            "McFlurry Oreo Regular",
-            "McFlurry Oreo Maxi",
-            "Sundae Cailler Mini",
-            "Sundae Cailler Regular",
-            "Sundae Caramel Mini ",
-            "Sundae Caramel Regular",
-            "Sundae Fraise Mini",
-            "Sundae Fraise  Regular",
-            "Sundae Nature Mini",
-            "Sundae Nature Regular",
-            "Donut fourré au Nutella",
-            "Donut sucre",
-            "Chausson aux pommes",
-            "Compote de Fruits")
-        ), sliderInput("servingdessert", "", min = 0, max = 5, value = 1, step = 1)
+               selectizeInput(
+                 inputId = "drink",
+                 label = "Drinks",
+                 choices = c(
+                   "-",
+                   "Coca-Cola mini",
+                   "Coca-Cola Small",
+                   "Coca-Cola Medium",
+                   "Coca-Cola Zero mini",
+                   "Coca-Cola Zero Small",
+                   "Coca-Cola Zero Medium",
+                   "Sprite Zero mini",
+                   "Sprite Zero Small",
+                   "Sprite Zero Medium",
+                   "Fanta Zero mini",
+                   "Fanta Zero Small",
+                   "Fanta Zero Medium",
+                   "Lipton Ice Tea mini",
+                   "Lipton Ice Tea Small",
+                   "Lipton Ice Tea Medium",
+                   "Henniez Naturelle",
+                   "Henniez Légère",
+                   "Jus d'orange Tropicana",
+                   "Schorle Pomme",
+                   "Smoothie Bottled Tropical Chia",
+                   "Smoothie Bottled Berries",
+                   "Red Bull",
+                   "Frappé Vanille Small",
+                   "Frappé Vanille Regular",
+                   "Frappé Fraise Small",
+                   "Frappé Fraise Regular",
+                   "Frappé Mocca Small",
+                   "Frappé Mocca Regular",
+                   "Ristretto",
+                   "Espresso",
+                   "Café Crème",
+                   "Cappuccino Small",
+                   "Cappuccino Regular",
+                   "Latte Macchiato Small",
+                   "Latte Macchiato Regular",
+                   "Café renversé",
+                   "Chocolat Chaud Small",
+                   "Chocolat Chaud Regular",
+                   "Thé"
+                 )
+               ), sliderInput("servingdrink", "", min = 0, max = 5, value = 1, step = 1), selectizeInput(
+                 inputId = "dessert",
+                 label = "Dessert",
+                 choices = c(
+                   "-",
+                   "Frappé Vanille Small",
+                   "Frappé Vanille Regular",
+                   "Frappé Fraise Small",
+                   "Frappé Fraise Regular",
+                   "Frappé Mocca Small",
+                   "Frappé Mocca Regular",
+                   "McFlurry M&M's Regular",
+                   "McFlurry M&M's Maxi",
+                   "McFlurry Celebrations Regular",
+                   "McFlurry Celebrations Maxi",
+                   "McFlurry Oreo Regular",
+                   "McFlurry Oreo Maxi",
+                   "Sundae Cailler Mini",
+                   "Sundae Cailler Regular",
+                   "Sundae Caramel Mini ",
+                   "Sundae Caramel Regular",
+                   "Sundae Fraise Mini",
+                   "Sundae Fraise  Regular",
+                   "Sundae Nature Mini",
+                   "Sundae Nature Regular",
+                   "Donut fourré au Nutella",
+                   "Donut sucre",
+                   "Chausson aux pommes",
+                   "Compote de Fruits")
+               ), sliderInput("servingdessert", "", min = 0, max = 5, value = 1, step = 1)
+             )
+      ),
+      column(9,
+             fluidRow(
+               box(
+                 title = "Nutrients",
+                 solidHeader = T,
+                 width = 12,
+                 collapsible = T,
+                 plotlyOutput("nutrients")
+               ))
+             ,(fluidRow(valueBoxOutput("calories", width = 12), width = 12))
       )
-    ),
-    column(9,
-           fluidRow(
-      box(
-        title = "Nutrients",
-        solidHeader = T,
-        width = 12,
-        collapsible = T,
-        plotlyOutput("nutrients")
-      ))
-      ,(fluidRow(valueBoxOutput("calories", width = 12), width = 12))
-    )
     )
 
 
@@ -274,11 +275,11 @@ body <- dashboardBody(tabItems(
   tabItem(
     tabName = "User",
     fluidRow(column(
-      3,
+      4,
       box(
         title = "Your data",
         solidHeader = T,
-        width = 14,
+        width = 16,
         collapsible = T,
 
         # selectizeInput(inputId = "age",
@@ -311,26 +312,25 @@ body <- dashboardBody(tabItems(
           label = "Activity:",
           choices = c("Very light", "Light", "Moderate", "Heavy", "Very heavy"),
           selected="Moderate"
-        )
+        ),
+        h2("BMI classification", align = "center"),
+        img(src = "bmi_image_copy.png",height="100%", width="100%", style="display: block; margin-left: auto; margin-right: auto;")
+
 
       )),## add cedric modify indicator position
-      column(9, fluidRow(
+      column(8, fluidRow(
         box(
           title = "BMI",
           solidHeader = T,
           width = 12,
           collapsible = T,
           plotlyOutput("nutri")
-        ##
+          ##
+        )),
+        valueBoxOutput("bmi"),
+        valueBoxOutput("bmr"),
+        valueBoxOutput("needs"))
     )),
-    valueBoxOutput("bmi"),
-    valueBoxOutput("bmr"),
-    valueBoxOutput("needs"),
-    h2("BMI classification", align = "center"),
-    img(src = "bmi_image_copy.png", style="display: block; margin-left: auto; margin-right: auto;")
-    )
-  )
-  ),
   tabItem(
     tabName = "Summary",
     fluidRow(column(
@@ -341,8 +341,8 @@ body <- dashboardBody(tabItems(
         width = 14,
         collapsible = T,
         plotlyOutput("recap")
-        )
       )
+    )
     ),
     fluidRow(column(
       12,
@@ -352,14 +352,53 @@ body <- dashboardBody(tabItems(
         solidHeader = T,
         width = 14,
         collapsible = T,
-      textOutput("walk"),align = "center",
+        textOutput("walk"),align = "center",
         tags$head(tags$style("#walk{font-size: 17px
-                                 }", align = "center"
+                                 }", align = "left"
         )
         )
       )))
-    )
-    ))
+  ),
+  tabItem(tabName = "Information",
+          fluidRow(column(
+            4,
+            box(
+              title = "BMI information", solidHeader = T,
+              width = 14,
+              collapsible = T,
+              textOutput("bmi_information"),align = "left",
+              tags$head(tags$style("#walk{font-size: 17px
+                                 }", align = "left"
+              )
+              )
+            )),
+            column(
+              4,
+              box(
+                title = "BMR information",solidHeader = T,
+                width = 14,
+                collapsible = T,
+                textOutput("bmr_information"),align = "left",
+                tags$head(tags$style("#walk{font-size: 17px
+                                 }", align = "left"
+                )
+                )
+              )),
+
+            column(
+              4,
+              box(
+                title = "Walking time", solidHeader = T,
+                width = 14,
+                collapsible = T,
+                textOutput("cal_need"),align = "left",
+                tags$head(tags$style("#walk{font-size: 17px
+                                 }", align = "left"
+                )
+                )
+              ))
+          ))
+))
 
 
 
@@ -430,7 +469,7 @@ server <- function(input, output) {
       summarise(Kcal = sum(Totalburger, Totalburgerbis, Totalsnack, Totalsnackbis, Totalsauce, Totalsaucebis, Totalsalad, Totalsaladsauce,Totaldrink, Totaldessert)) %>%
       pull(Kcal)
 
-        valueBox("Kcal",
+    valueBox("Kcal",
              paste0(kcal, " kcal"),
              icon = icon("fas fa-fire-alt"),
              color = "yellow")
@@ -438,132 +477,132 @@ server <- function(input, output) {
 
 
   output$nutrients <- renderPlotly({
-      d <- MacD %>%
-          select(proteine,
-                 glucides,
-                 sucre,
-                 lipides,
-                 acides_gras_Sat,
-                 fibres,
-                 sel,
-                 name) %>%
-        filter(
-          name %in% input$drink |
-            name %in% input$salad |
-            name %in% input$snack |
-            name %in% input$snackbis |
-            name %in% input$burger |
-            name %in% input$burgerbis |
-            name %in% input$saladsauce |
-            name %in% input$saucebis |
-            name %in% input$sauce |
-            name %in% input$dessert
-          ) %>%
-        mutate(
-          Servingburger = ifelse(name %in% input$burger, as.numeric(input$servingburger), 0),
-          Servingburgerbis = ifelse(name %in% input$burgerbis, as.numeric(input$servingburgerbis), 0),
-          Servingsnack = ifelse(name %in% input$snack, as.numeric(input$servingsnack), 0),
-          Servingsnackbis = ifelse(name %in% input$snackbis, as.numeric(input$servingsnackbis), 0),
-          Servingsauce = ifelse(name %in% input$sauce, as.numeric(input$servingsauce), 0),
-          Servingsaucebis = ifelse(name %in% input$saucebis, as.numeric(input$servingsaucebis), 0),
-          Servingsalad = ifelse(name %in% input$salad, as.numeric(input$servingsalad), 0),
-          Servingsaladsauce= ifelse(name %in% input$saladsauce, as.numeric(input$servingsaladsauce), 0),
-          Servingdrink = ifelse(name %in% input$drink, as.numeric(input$servingdrink), 0),
-          Servingdessert = ifelse(name %in% input$dessert, as.numeric(input$servingdessert), 0))
+    d <- MacD %>%
+      select(proteine,
+             glucides,
+             sucre,
+             lipides,
+             acides_gras_Sat,
+             fibres,
+             sel,
+             name) %>%
+      filter(
+        name %in% input$drink |
+          name %in% input$salad |
+          name %in% input$snack |
+          name %in% input$snackbis |
+          name %in% input$burger |
+          name %in% input$burgerbis |
+          name %in% input$saladsauce |
+          name %in% input$saucebis |
+          name %in% input$sauce |
+          name %in% input$dessert
+      ) %>%
+      mutate(
+        Servingburger = ifelse(name %in% input$burger, as.numeric(input$servingburger), 0),
+        Servingburgerbis = ifelse(name %in% input$burgerbis, as.numeric(input$servingburgerbis), 0),
+        Servingsnack = ifelse(name %in% input$snack, as.numeric(input$servingsnack), 0),
+        Servingsnackbis = ifelse(name %in% input$snackbis, as.numeric(input$servingsnackbis), 0),
+        Servingsauce = ifelse(name %in% input$sauce, as.numeric(input$servingsauce), 0),
+        Servingsaucebis = ifelse(name %in% input$saucebis, as.numeric(input$servingsaucebis), 0),
+        Servingsalad = ifelse(name %in% input$salad, as.numeric(input$servingsalad), 0),
+        Servingsaladsauce= ifelse(name %in% input$saladsauce, as.numeric(input$servingsaladsauce), 0),
+        Servingdrink = ifelse(name %in% input$drink, as.numeric(input$servingdrink), 0),
+        Servingdessert = ifelse(name %in% input$dessert, as.numeric(input$servingdessert), 0))
 
 
-      d <-  d %>% mutate(Totalburgerprot = ((as.numeric(proteine) * Servingburger)),
-                          Totalburgergluc = ((as.numeric(glucides) * Servingburger)),
-                          Totalburgersug = ((as.numeric(sucre) * Servingburger)),
-                          Totalburgerlip = ((as.numeric(lipides) * Servingburger)),
-                          Totalburgeracid = ((as.numeric(acides_gras_Sat) * Servingburger)),
-                          Totalburgerfiber = ((as.numeric(fibres) * Servingburger)),
-                          Totalburgersalt = ((as.numeric(sel) * Servingburger)),
+    d <-  d %>% mutate(Totalburgerprot = ((as.numeric(proteine) * Servingburger)),
+                       Totalburgergluc = ((as.numeric(glucides) * Servingburger)),
+                       Totalburgersug = ((as.numeric(sucre) * Servingburger)),
+                       Totalburgerlip = ((as.numeric(lipides) * Servingburger)),
+                       Totalburgeracid = ((as.numeric(acides_gras_Sat) * Servingburger)),
+                       Totalburgerfiber = ((as.numeric(fibres) * Servingburger)),
+                       Totalburgersalt = ((as.numeric(sel) * Servingburger)),
 
-                         Totalburgerbisprot = ((as.numeric(proteine) * Servingburgerbis)),
-                         Totalburgerbisgluc = ((as.numeric(glucides) * Servingburgerbis)),
-                         Totalburgerbissug = ((as.numeric(sucre) * Servingburgerbis)),
-                         Totalburgerbislip = ((as.numeric(lipides) * Servingburgerbis)),
-                         Totalburgerbisacid = ((as.numeric(acides_gras_Sat) * Servingburgerbis)),
-                         Totalburgerbisfiber = ((as.numeric(fibres) * Servingburgerbis)),
-                         Totalburgerbissalt = ((as.numeric(sel) * Servingburgerbis)),
+                       Totalburgerbisprot = ((as.numeric(proteine) * Servingburgerbis)),
+                       Totalburgerbisgluc = ((as.numeric(glucides) * Servingburgerbis)),
+                       Totalburgerbissug = ((as.numeric(sucre) * Servingburgerbis)),
+                       Totalburgerbislip = ((as.numeric(lipides) * Servingburgerbis)),
+                       Totalburgerbisacid = ((as.numeric(acides_gras_Sat) * Servingburgerbis)),
+                       Totalburgerbisfiber = ((as.numeric(fibres) * Servingburgerbis)),
+                       Totalburgerbissalt = ((as.numeric(sel) * Servingburgerbis)),
 
-                          Totalsnackprot = ((as.numeric(proteine) * Servingsnack)),
-                          Totalsnackgluc = ((as.numeric(glucides) * Servingsnack)),
-                          Totalsnacksug = ((as.numeric(sucre) * Servingsnack)),
-                          Totalsnacklip = ((as.numeric(lipides) * Servingsnack)),
-                          Totalsnackacid = ((as.numeric(acides_gras_Sat) * Servingsnack)),
-                          Totalsnackfiber = ((as.numeric(fibres) * Servingsnack)),
-                          Totalsnacksalt = ((as.numeric(sel) * Servingsnack)),
+                       Totalsnackprot = ((as.numeric(proteine) * Servingsnack)),
+                       Totalsnackgluc = ((as.numeric(glucides) * Servingsnack)),
+                       Totalsnacksug = ((as.numeric(sucre) * Servingsnack)),
+                       Totalsnacklip = ((as.numeric(lipides) * Servingsnack)),
+                       Totalsnackacid = ((as.numeric(acides_gras_Sat) * Servingsnack)),
+                       Totalsnackfiber = ((as.numeric(fibres) * Servingsnack)),
+                       Totalsnacksalt = ((as.numeric(sel) * Servingsnack)),
 
-                         Totalsnackbisprot = ((as.numeric(proteine) * Servingsnackbis)),
-                         Totalsnackbisgluc = ((as.numeric(glucides) * Servingsnackbis)),
-                         Totalsnackbissug = ((as.numeric(sucre) * Servingsnackbis)),
-                         Totalsnackbislip = ((as.numeric(lipides) * Servingsnackbis)),
-                         Totalsnackbisacid = ((as.numeric(acides_gras_Sat) * Servingsnackbis)),
-                         Totalsnackbisfiber = ((as.numeric(fibres) * Servingsnackbis)),
-                         Totalsnackbissalt = ((as.numeric(sel) * Servingsnackbis)),
+                       Totalsnackbisprot = ((as.numeric(proteine) * Servingsnackbis)),
+                       Totalsnackbisgluc = ((as.numeric(glucides) * Servingsnackbis)),
+                       Totalsnackbissug = ((as.numeric(sucre) * Servingsnackbis)),
+                       Totalsnackbislip = ((as.numeric(lipides) * Servingsnackbis)),
+                       Totalsnackbisacid = ((as.numeric(acides_gras_Sat) * Servingsnackbis)),
+                       Totalsnackbisfiber = ((as.numeric(fibres) * Servingsnackbis)),
+                       Totalsnackbissalt = ((as.numeric(sel) * Servingsnackbis)),
 
-                          Totalsauceprot = ((as.numeric(proteine) * Servingsauce)),
-                          Totalsaucegluc = ((as.numeric(glucides) * Servingsauce)),
-                          Totalsaucesug = ((as.numeric(sucre) * Servingsauce)),
-                          Totalsaucelip = ((as.numeric(lipides) * Servingsauce)),
-                          Totalsauceacid = ((as.numeric(acides_gras_Sat) * Servingsauce)),
-                          Totalsaucefiber = ((as.numeric(fibres) * Servingsauce)),
-                          Totalsaucesalt = ((as.numeric(sel) * Servingsauce)),
+                       Totalsauceprot = ((as.numeric(proteine) * Servingsauce)),
+                       Totalsaucegluc = ((as.numeric(glucides) * Servingsauce)),
+                       Totalsaucesug = ((as.numeric(sucre) * Servingsauce)),
+                       Totalsaucelip = ((as.numeric(lipides) * Servingsauce)),
+                       Totalsauceacid = ((as.numeric(acides_gras_Sat) * Servingsauce)),
+                       Totalsaucefiber = ((as.numeric(fibres) * Servingsauce)),
+                       Totalsaucesalt = ((as.numeric(sel) * Servingsauce)),
 
-                          Totalsaucebisprot = ((as.numeric(proteine) * Servingsaucebis)),
-                          Totalsaucebisgluc = ((as.numeric(glucides) * Servingsaucebis)),
-                          Totalsaucebissug = ((as.numeric(sucre) * Servingsaucebis)),
-                          Totalsaucebislip = ((as.numeric(lipides) * Servingsaucebis)),
-                          Totalsaucebisacid = ((as.numeric(acides_gras_Sat) * Servingsaucebis)),
-                          Totalsaucebisfiber = ((as.numeric(fibres) * Servingsaucebis)),
-                          Totalsaucebissalt = ((as.numeric(sel) * Servingsaucebis)),
+                       Totalsaucebisprot = ((as.numeric(proteine) * Servingsaucebis)),
+                       Totalsaucebisgluc = ((as.numeric(glucides) * Servingsaucebis)),
+                       Totalsaucebissug = ((as.numeric(sucre) * Servingsaucebis)),
+                       Totalsaucebislip = ((as.numeric(lipides) * Servingsaucebis)),
+                       Totalsaucebisacid = ((as.numeric(acides_gras_Sat) * Servingsaucebis)),
+                       Totalsaucebisfiber = ((as.numeric(fibres) * Servingsaucebis)),
+                       Totalsaucebissalt = ((as.numeric(sel) * Servingsaucebis)),
 
-                          Totalsaladprot = ((as.numeric(proteine) * Servingsalad)),
-                          Totalsaladgluc = ((as.numeric(glucides) * Servingsalad)),
-                          Totalsaladsug = ((as.numeric(sucre) * Servingsalad)),
-                          Totalsaladlip = ((as.numeric(lipides) * Servingsalad)),
-                          Totalsaladacid = ((as.numeric(acides_gras_Sat) * Servingsalad)),
-                          Totalsaladfiber = ((as.numeric(fibres) * Servingsalad)),
-                          Totalsaladsalt = ((as.numeric(sel) * Servingsalad)),
+                       Totalsaladprot = ((as.numeric(proteine) * Servingsalad)),
+                       Totalsaladgluc = ((as.numeric(glucides) * Servingsalad)),
+                       Totalsaladsug = ((as.numeric(sucre) * Servingsalad)),
+                       Totalsaladlip = ((as.numeric(lipides) * Servingsalad)),
+                       Totalsaladacid = ((as.numeric(acides_gras_Sat) * Servingsalad)),
+                       Totalsaladfiber = ((as.numeric(fibres) * Servingsalad)),
+                       Totalsaladsalt = ((as.numeric(sel) * Servingsalad)),
 
-                          Totalsaladsauceprot = ((as.numeric(proteine) * Servingsaladsauce)),
-                          Totalsaladsaucegluc = ((as.numeric(glucides) * Servingsaladsauce)),
-                          Totalsaladsaucesug = ((as.numeric(sucre) * Servingsaladsauce)),
-                          Totalsaladsaucelip = ((as.numeric(lipides) * Servingsaladsauce)),
-                          Totalsaladsauceacid = ((as.numeric(acides_gras_Sat) * Servingsaladsauce)),
-                          Totalsaladsaucefiber = ((as.numeric(fibres) * Servingsaladsauce)),
-                          Totalsaladsaucesalt = ((as.numeric(sel) * Servingsaladsauce)),
+                       Totalsaladsauceprot = ((as.numeric(proteine) * Servingsaladsauce)),
+                       Totalsaladsaucegluc = ((as.numeric(glucides) * Servingsaladsauce)),
+                       Totalsaladsaucesug = ((as.numeric(sucre) * Servingsaladsauce)),
+                       Totalsaladsaucelip = ((as.numeric(lipides) * Servingsaladsauce)),
+                       Totalsaladsauceacid = ((as.numeric(acides_gras_Sat) * Servingsaladsauce)),
+                       Totalsaladsaucefiber = ((as.numeric(fibres) * Servingsaladsauce)),
+                       Totalsaladsaucesalt = ((as.numeric(sel) * Servingsaladsauce)),
 
-                          Totaldrinkprot = ((as.numeric(proteine) * Servingdrink)),
-                          Totaldrinkgluc = ((as.numeric(glucides) * Servingdrink)),
-                          Totaldrinksug = ((as.numeric(sucre) * Servingdrink)),
-                          Totaldrinklip = ((as.numeric(lipides) * Servingdrink)),
-                          Totaldrinkacid = ((as.numeric(acides_gras_Sat) * Servingdrink)),
-                          Totaldrinkfiber = ((as.numeric(fibres) * Servingdrink)),
-                          Totaldrinksalt = ((as.numeric(sel) * Servingdrink)),
+                       Totaldrinkprot = ((as.numeric(proteine) * Servingdrink)),
+                       Totaldrinkgluc = ((as.numeric(glucides) * Servingdrink)),
+                       Totaldrinksug = ((as.numeric(sucre) * Servingdrink)),
+                       Totaldrinklip = ((as.numeric(lipides) * Servingdrink)),
+                       Totaldrinkacid = ((as.numeric(acides_gras_Sat) * Servingdrink)),
+                       Totaldrinkfiber = ((as.numeric(fibres) * Servingdrink)),
+                       Totaldrinksalt = ((as.numeric(sel) * Servingdrink)),
 
-                          Totaldessertprot = ((as.numeric(proteine) * Servingdessert)),
-                          Totaldessertgluc = ((as.numeric(glucides) * Servingdessert)),
-                          Totaldessertsug = ((as.numeric(sucre) * Servingdessert)),
-                          Totaldessertlip = ((as.numeric(lipides) * Servingdessert)),
-                          Totaldessertacid = ((as.numeric(acides_gras_Sat) * Servingdessert)),
-                          Totaldessertfiber = ((as.numeric(fibres) * Servingdessert)),
-                          Totaldessertsalt = ((as.numeric(sel) * Servingdessert)))
+                       Totaldessertprot = ((as.numeric(proteine) * Servingdessert)),
+                       Totaldessertgluc = ((as.numeric(glucides) * Servingdessert)),
+                       Totaldessertsug = ((as.numeric(sucre) * Servingdessert)),
+                       Totaldessertlip = ((as.numeric(lipides) * Servingdessert)),
+                       Totaldessertacid = ((as.numeric(acides_gras_Sat) * Servingdessert)),
+                       Totaldessertfiber = ((as.numeric(fibres) * Servingdessert)),
+                       Totaldessertsalt = ((as.numeric(sel) * Servingdessert)))
 
 
 
-      e <- d %>%
-        summarise(
-          Proteine = sum(sum(Totaldessertprot), sum(Totalburgerprot), sum(Totalburgerbisprot), sum(Totalsnackprot), sum(Totalsnackbisprot), sum(Totalsauceprot), sum(Totalsaucebisprot), sum(Totalsaladprot), sum(Totalsaladsauceprot),sum(Totaldrinkprot)),
-          Glucides = sum(sum(Totaldessertgluc), sum(Totalburgergluc), sum(Totalburgerbisgluc), sum(Totalsnackgluc), sum(Totalsnackbisgluc), sum(Totalsaucegluc), sum(Totalsaucebisgluc), sum(Totalsaladgluc), sum(Totalsaladsaucegluc) ,sum(Totaldrinkgluc)),
-          Sucres = sum(sum(Totaldessertsug), sum(Totalburgersug), sum(Totalburgerbissug), sum(Totalsnacksug), sum(Totalsnackbissug), sum(Totalsaucesug), sum(Totalsaucebissug), sum(Totalsaladsug), sum(Totalsaladsaucesug), sum(Totaldrinksug)),
-          Lipides = sum(sum(Totaldessertlip), sum(Totalburgerlip), sum(Totalburgerbislip), sum(Totalsnacklip), sum(Totalsnackbislip), sum(Totalsaucelip), sum(Totalsaucebislip), sum(Totalsaladlip), sum(Totalsaladsaucelip), sum(Totaldrinklip)),
-          Acide_Gras = sum(sum(Totaldessertacid), sum(Totalburgeracid), sum(Totalburgerbisacid), sum(Totalsnackacid), sum(Totalsnackbisacid), sum(Totalsauceacid), sum(Totalsaucebisacid), sum(Totalsaladacid), sum(Totalsaladsauceacid), sum(Totaldrinkacid)),
-          Fibres = sum(sum(Totaldessertfiber), sum(Totalburgerfiber), sum(Totalburgerbisfiber), sum(Totalsnackfiber), sum(Totalsnackbisfiber), sum(Totalsaucefiber), sum(Totalsaucebisfiber), sum(Totalsaladfiber), sum(Totalsaladsaucefiber), sum(Totaldrinkfiber)),
-          Sel = sum(sum(Totaldessertsalt), sum(Totalburgersalt), sum(Totalburgerbissalt), sum(Totalsnacksalt), sum(Totalsnackbissalt), sum(Totalsaucesalt), sum(Totalsaucebissalt), sum(Totalsaladsalt), sum(Totalsaladsaucesalt), sum(Totaldrinksalt))
-        )
+    e <- d %>%
+      summarise(
+        Proteine = sum(sum(Totaldessertprot), sum(Totalburgerprot), sum(Totalburgerbisprot), sum(Totalsnackprot), sum(Totalsnackbisprot), sum(Totalsauceprot), sum(Totalsaucebisprot), sum(Totalsaladprot), sum(Totalsaladsauceprot),sum(Totaldrinkprot)),
+        Glucides = sum(sum(Totaldessertgluc), sum(Totalburgergluc), sum(Totalburgerbisgluc), sum(Totalsnackgluc), sum(Totalsnackbisgluc), sum(Totalsaucegluc), sum(Totalsaucebisgluc), sum(Totalsaladgluc), sum(Totalsaladsaucegluc) ,sum(Totaldrinkgluc)),
+        Sucres = sum(sum(Totaldessertsug), sum(Totalburgersug), sum(Totalburgerbissug), sum(Totalsnacksug), sum(Totalsnackbissug), sum(Totalsaucesug), sum(Totalsaucebissug), sum(Totalsaladsug), sum(Totalsaladsaucesug), sum(Totaldrinksug)),
+        Lipides = sum(sum(Totaldessertlip), sum(Totalburgerlip), sum(Totalburgerbislip), sum(Totalsnacklip), sum(Totalsnackbislip), sum(Totalsaucelip), sum(Totalsaucebislip), sum(Totalsaladlip), sum(Totalsaladsaucelip), sum(Totaldrinklip)),
+        Acide_Gras = sum(sum(Totaldessertacid), sum(Totalburgeracid), sum(Totalburgerbisacid), sum(Totalsnackacid), sum(Totalsnackbisacid), sum(Totalsauceacid), sum(Totalsaucebisacid), sum(Totalsaladacid), sum(Totalsaladsauceacid), sum(Totaldrinkacid)),
+        Fibres = sum(sum(Totaldessertfiber), sum(Totalburgerfiber), sum(Totalburgerbisfiber), sum(Totalsnackfiber), sum(Totalsnackbisfiber), sum(Totalsaucefiber), sum(Totalsaucebisfiber), sum(Totalsaladfiber), sum(Totalsaladsaucefiber), sum(Totaldrinkfiber)),
+        Sel = sum(sum(Totaldessertsalt), sum(Totalburgersalt), sum(Totalburgerbissalt), sum(Totalsnacksalt), sum(Totalsnackbissalt), sum(Totalsaucesalt), sum(Totalsaucebissalt), sum(Totalsaladsalt), sum(Totalsaladsaucesalt), sum(Totaldrinksalt))
+      )
     # pull(Proteine, Glucides, Sucres, Lipides, Acide_Gras, Fibres, Sel)
 
     e <- e %>% melt()
@@ -829,7 +868,7 @@ server <- function(input, output) {
     MacD <- read_excel(here("extdata/MacD.xlsx"))
     # MacD <- read_excel(here("inst/shiny-examples/McDonald/rsconnect/shinyapps.io/mcdonald/MacD.xlsx"))
 
-      #Kcal
+    #Kcal
     # drink <- "Coca-Cola Zero Small"
     # salad <- "-"
     # snack <- "Frites Sma"
@@ -953,14 +992,14 @@ server <- function(input, output) {
 
     fig <- plot_ly(df, labels = ~label, values = ~vec, type = 'pie', marker = list(colors = c('#E69F00', '#182844')))
     fig <- fig %>% layout(
-                          xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
-                          yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE))
+      xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
+      yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE))
 
     ggplotly(fig)
 
   })
 
- #add Raf
+  #add Raf
   output$walk <- renderText({
 
     kcal <- MacD %>%
@@ -1017,6 +1056,31 @@ server <- function(input, output) {
     paste("To burn the calories absorbed, you need to walk:", u, "minute(s) at a normal pace or", v, "minute(s) at a fast pace.")
   })
 
+  output$bmi_information <- renderText({
+    "Body Mass Index (BMI) is a person’s weight in
+    kilograms divided by the square of height in meters.
+    A high BMI can be an indicator of high body fatness.
+    BMI can be used to screen for weight categories that
+    may lead to health problems but it is not diagnostic
+    of the body fatness or health of an individual.y"
+  })
+
+  output$bmr_information <- renderText({
+    "Basal Metabolic Rate, also known as BMR, is the amount
+    of energy your body burns at rest on a daily basis.
+    In other words: It is the number of calories required to
+    keep your body function while you are not doing any physical activities."
+  })
+
+
+  output$cal_need <- renderText({
+    "A calorie is the amount of heat needed to raise the temperature of
+    one gram of water by one degree Celsius. Calories in food provide
+    energy in the form of heat so that our bodies can function.
+    Our bodies store and burn calories as fuel. Many people who are
+    trying to reach or maintain a healthy weight will count calories and
+    try to decrease caloric intake."
+  })
 
 }
 
