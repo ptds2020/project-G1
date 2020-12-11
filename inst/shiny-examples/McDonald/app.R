@@ -382,7 +382,7 @@ body <- dashboardBody(tabItems(
             column(
               4,
               box(
-                title = "Calorie need", solidHeader = T,
+                title = "Kcal need", solidHeader = T,
                 width = 14,
                 height = 200,
                 collapsible = T,

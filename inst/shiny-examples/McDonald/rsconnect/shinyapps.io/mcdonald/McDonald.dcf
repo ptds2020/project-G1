@@ -5,8 +5,8 @@ account: mcdonald
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 3330389
-bundleId: 3972287
+bundleId: 3974355
 url: https://mcdonald.shinyapps.io/McDonald/
-when: 1607630594.03479
+when: 1607673422.3766
 asMultiple: FALSE
 asStatic: FALSE
