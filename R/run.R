@@ -2,10 +2,10 @@
 #' @export
 
 run <- function() {
-  appDir <- system.file("shiny-examples", "McDonald", package = "McDonald")
+  appDir <- system.file("McDonald", package = "McDonald")
   if (appDir == "") {
     stop(
-      "Could not find example directory. Try re-installing MacDonald.",
+      "Could not find directory. Try re-installing MacDonald.",
       call. = FALSE
     )
   }
