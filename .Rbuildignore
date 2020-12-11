@@ -1,6 +1,7 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^project_proposal
+^extdata
 ^.git
 ^.gitignore
 ^robots.txt
