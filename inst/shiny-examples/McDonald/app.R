@@ -781,7 +781,7 @@ server <- function(input, output) {
     needs <- needs(bmr, multiplier)
 
     valueBox(
-      "Calorie need",
+      "Kcal need",
       paste(needs, "kcal"),
       icon = icon("fitness"),
       color = "olive"
