@@ -1,5 +1,5 @@
 
-# remotes::install_github("ptds2020/project-G1")
+# remotes::install_github("ptds2020/project-G1") #Necessary to deploy the shiny app on shinyapps.io
 
 library(shiny)
 library(dplyr)
@@ -319,9 +319,9 @@ body <- dashboardBody(tabItems(
           plotlyOutput("nutri")
 
         )),
-        valueBoxOutput("bmi"),
-        valueBoxOutput("bmr"),
-        valueBoxOutput("needs"))
+        valueBoxOutput("bmi", width = 4),
+        valueBoxOutput("bmr", width = 4),
+        valueBoxOutput("needs", width = 4))
     )),
   tabItem(
     tabName = "Summary",
