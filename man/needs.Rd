@@ -19,3 +19,6 @@ Calorie need = BMR*multiplier
 \examples{
 needs(bmr=1620, multiplier=1.65)
 }
+\author{
+Gaëtan Lovey, Cédric Vuignier, Jérémy Bayer, Raffaello Raffin
+}

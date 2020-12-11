@@ -1,4 +1,5 @@
 #' @title Calorie need
+#' @author Gaëtan Lovey, Cédric Vuignier, Jérémy Bayer, Raffaello Raffin
 #' @description Return the daily calorie need for a person.
 #'
 #' Calorie need = BMR*multiplier

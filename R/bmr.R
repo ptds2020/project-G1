@@ -1,4 +1,5 @@
 #' @title Basal Metobolic Rate (BMR)
+#' @author Gaëtan Lovey, Cédric Vuignier, Jérémy Bayer, Raffaello Raffin
 #' @description Return the value of the basal metabolic rate (BMR).
 #'
 #' BMR = Weight*Coefficient*24*LeanFactor

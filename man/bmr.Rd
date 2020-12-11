@@ -23,3 +23,6 @@ BMR = Weight*Coefficient*24*LeanFactor
 \examples{
 bmr(y=75, coefficient = 1, d = 24, leanfactor = 0.9)
 }
+\author{
+Gaëtan Lovey, Cédric Vuignier, Jérémy Bayer, Raffaello Raffin
+}

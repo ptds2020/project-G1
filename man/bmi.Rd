@@ -19,3 +19,6 @@ BMI = Weight/Size^2
 \examples{
 bmi(x=183, y=75)
 }
+\author{
+Gaëtan Lovey, Cédric Vuignier, Jérémy Bayer, Raffaello Raffin
+}

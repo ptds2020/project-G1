@@ -25,3 +25,6 @@ Walking time = Kcal/((MET*3.5*Weight)/200)
 \examples{
 walking_time(y=75, MET = 3, e = 3.5, f = 200, kcal = 800)
 }
+\author{
+Gaëtan Lovey, Cédric Vuignier, Jérémy Bayer, Raffaello Raffin
+}

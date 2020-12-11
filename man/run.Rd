@@ -9,3 +9,6 @@ run()
 \description{
 Run the McDonald shiny app
 }
+\author{
+Gaëtan Lovey, Cédric Vuignier, Jérémy Bayer, Raffaello Raffin
+}

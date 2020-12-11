@@ -1,4 +1,5 @@
 #' @title Body Mass Index (BMI)
+#' @author Gaëtan Lovey, Cédric Vuignier, Jérémy Bayer, Raffaello Raffin
 #' @description Return the value of the body mass index (BMI)
 #'
 #' BMI = Weight/Size^2

@@ -1,4 +1,5 @@
 #' @title Walking time
+#' @author Gaëtan Lovey, Cédric Vuignier, Jérémy Bayer, Raffaello Raffin
 #' @description Returns the walking time in minutes useful for expending the calories absorbed.
 #'
 #' Walking time = Kcal/((MET*3.5*Weight)/200)
