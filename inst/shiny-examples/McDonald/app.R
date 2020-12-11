@@ -1,5 +1,5 @@
 
-# remotes::install_github("ptds2020/project-G1") #Necessary to deploy the shiny app on shinyapps.io
+# remotes::install_github("ptds2020/project-G1", build_vignettes = TRUE) #Necessary to deploy the shiny app on shinyapps.io
 
 library(shiny)
 library(dplyr)
